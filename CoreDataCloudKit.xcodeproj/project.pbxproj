@@ -11,11 +11,13 @@
 		3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */; };
 		3C6FDBFD1B680637006FD19A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBFC1B680637006FD19A /* MasterViewController.swift */; };
 		3C6FDBFF1B680637006FD19A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBFE1B680637006FD19A /* DetailViewController.swift */; };
-		3C6FDC021B680637006FD19A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC001B680637006FD19A /* Main.storyboard */; };
 		3C6FDC041B680637006FD19A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC031B680637006FD19A /* Images.xcassets */; };
 		3C6FDC071B680637006FD19A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC051B680637006FD19A /* LaunchScreen.xib */; };
 		3C6FDC131B680637006FD19A /* CoreDataCloudKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC121B680637006FD19A /* CoreDataCloudKitTests.swift */; };
 		3C6FDC1E1B680648006FD19A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C6FDC1D1B680648006FD19A /* CloudKit.framework */; };
+		3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */; };
+		3C6FDC231B683029006FD19A /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC221B683029006FD19A /* Threading.swift */; };
+		3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC281B683A52006FD19A /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,6 @@
 		3C6FDBFA1B680637006FD19A /* CoreDataCloudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataCloudKit.xcdatamodel; sourceTree = "<group>"; };
 		3C6FDBFC1B680637006FD19A /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		3C6FDBFE1B680637006FD19A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		3C6FDC011B680637006FD19A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C6FDC031B680637006FD19A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3C6FDC061B680637006FD19A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3C6FDC0C1B680637006FD19A /* CoreDataCloudKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataCloudKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +44,9 @@
 		3C6FDC121B680637006FD19A /* CoreDataCloudKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCloudKitTests.swift; sourceTree = "<group>"; };
 		3C6FDC1C1B680641006FD19A /* CoreDataCloudKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreDataCloudKit.entitlements; sourceTree = "<group>"; };
 		3C6FDC1D1B680648006FD19A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCPersistenceController.swift; sourceTree = "<group>"; };
+		3C6FDC221B683029006FD19A /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
+		3C6FDC281B683A52006FD19A /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +71,6 @@
 		3C6FDBE91B680637006FD19A = {
 			isa = PBXGroup;
 			children = (
-				3C6FDC1D1B680648006FD19A /* CloudKit.framework */,
 				3C6FDBF41B680637006FD19A /* CoreDataCloudKit */,
 				3C6FDC0F1B680637006FD19A /* CoreDataCloudKitTests */,
 				3C6FDBF31B680637006FD19A /* Products */,
@@ -86,14 +89,13 @@
 		3C6FDBF41B680637006FD19A /* CoreDataCloudKit */ = {
 			isa = PBXGroup;
 			children = (
-				3C6FDC1C1B680641006FD19A /* CoreDataCloudKit.entitlements */,
+				3C6FDC271B683A28006FD19A /* AppleTemplate */,
+				3C6FDC261B683A1D006FD19A /* Views */,
+				3C6FDC251B6838E9006FD19A /* Frameworks */,
+				3C6FDC241B6838D1006FD19A /* Persistence */,
+				3C6FDC211B683018006FD19A /* Operators */,
 				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
-				3C6FDBFC1B680637006FD19A /* MasterViewController.swift */,
-				3C6FDBFE1B680637006FD19A /* DetailViewController.swift */,
-				3C6FDC001B680637006FD19A /* Main.storyboard */,
 				3C6FDC031B680637006FD19A /* Images.xcassets */,
-				3C6FDC051B680637006FD19A /* LaunchScreen.xib */,
-				3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */,
 				3C6FDBF51B680637006FD19A /* Supporting Files */,
 			);
 			path = CoreDataCloudKit;
@@ -102,6 +104,8 @@
 		3C6FDBF51B680637006FD19A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3C6FDC051B680637006FD19A /* LaunchScreen.xib */,
+				3C6FDC1C1B680641006FD19A /* CoreDataCloudKit.entitlements */,
 				3C6FDBF61B680637006FD19A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -122,6 +126,48 @@
 				3C6FDC111B680637006FD19A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C6FDC211B683018006FD19A /* Operators */ = {
+			isa = PBXGroup;
+			children = (
+				3C6FDC221B683029006FD19A /* Threading.swift */,
+			);
+			name = Operators;
+			sourceTree = "<group>";
+		};
+		3C6FDC241B6838D1006FD19A /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */,
+				3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
+		3C6FDC251B6838E9006FD19A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C6FDC1D1B680648006FD19A /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C6FDC261B683A1D006FD19A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C6FDC281B683A52006FD19A /* ListViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		3C6FDC271B683A28006FD19A /* AppleTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				3C6FDBFC1B680637006FD19A /* MasterViewController.swift */,
+				3C6FDBFE1B680637006FD19A /* DetailViewController.swift */,
+			);
+			name = AppleTemplate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +256,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C6FDC021B680637006FD19A /* Main.storyboard in Resources */,
 				3C6FDC071B680637006FD19A /* LaunchScreen.xib in Resources */,
 				3C6FDC041B680637006FD19A /* Images.xcassets in Resources */,
 			);
@@ -231,9 +276,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C6FDBF81B680637006FD19A /* AppDelegate.swift in Sources */,
+				3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */,
 				3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */,
 				3C6FDBFD1B680637006FD19A /* MasterViewController.swift in Sources */,
+				3C6FDC231B683029006FD19A /* Threading.swift in Sources */,
 				3C6FDBFF1B680637006FD19A /* DetailViewController.swift in Sources */,
+				3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,14 +304,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3C6FDC001B680637006FD19A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3C6FDC011B680637006FD19A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3C6FDC051B680637006FD19A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
