@@ -15,8 +15,6 @@ class MCPersistenceController{
     
     typealias PersistenceReadyType = () -> ()
     
-//    var persistenceReady: PersistenceReadyType
-    
     // this is our Single Source Of Truth.
     // will be used by our User Interface (and therefore exposed outside of this controller.
     let managedObjectContext: NSManagedObjectContext
@@ -28,9 +26,6 @@ class MCPersistenceController{
     
     
     init?(persistenceReady: PersistenceReadyType) {
-    
-//        self.persistenceReady = persistenceReady
-        
         managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         

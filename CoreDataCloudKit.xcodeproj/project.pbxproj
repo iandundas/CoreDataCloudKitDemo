@@ -18,6 +18,8 @@
 		3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */; };
 		3C6FDC231B683029006FD19A /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC221B683029006FD19A /* Threading.swift */; };
 		3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC281B683A52006FD19A /* ListViewController.swift */; };
+		3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */; };
+		3C9D8D8F1B69132000B39776 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8E1B69132000B39776 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCPersistenceController.swift; sourceTree = "<group>"; };
 		3C6FDC221B683029006FD19A /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		3C6FDC281B683A52006FD19A /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		3C9D8D8E1B69132000B39776 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +93,12 @@
 		3C6FDBF41B680637006FD19A /* CoreDataCloudKit */ = {
 			isa = PBXGroup;
 			children = (
+				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
 				3C6FDC271B683A28006FD19A /* AppleTemplate */,
 				3C6FDC261B683A1D006FD19A /* Views */,
 				3C6FDC251B6838E9006FD19A /* Frameworks */,
 				3C6FDC241B6838D1006FD19A /* Persistence */,
 				3C6FDC211B683018006FD19A /* Operators */,
-				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
 				3C6FDC031B680637006FD19A /* Images.xcassets */,
 				3C6FDBF51B680637006FD19A /* Supporting Files */,
 			);
@@ -139,8 +143,8 @@
 		3C6FDC241B6838D1006FD19A /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */,
 				3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */,
+				3C9D8D901B69133000B39776 /* Model */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -157,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				3C6FDC281B683A52006FD19A /* ListViewController.swift */,
+				3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -168,6 +173,15 @@
 				3C6FDBFE1B680637006FD19A /* DetailViewController.swift */,
 			);
 			name = AppleTemplate;
+			sourceTree = "<group>";
+		};
+		3C9D8D901B69133000B39776 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */,
+				3C9D8D8E1B69132000B39776 /* Item.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,11 +290,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C6FDBF81B680637006FD19A /* AppDelegate.swift in Sources */,
+				3C9D8D8F1B69132000B39776 /* Item.swift in Sources */,
 				3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */,
 				3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */,
 				3C6FDBFD1B680637006FD19A /* MasterViewController.swift in Sources */,
 				3C6FDC231B683029006FD19A /* Threading.swift in Sources */,
 				3C6FDBFF1B680637006FD19A /* DetailViewController.swift in Sources */,
+				3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */,
 				3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,6 +495,7 @@
 				3C6FDC181B680637006FD19A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C6FDC191B680637006FD19A /* Build configuration list for PBXNativeTarget "CoreDataCloudKitTests" */ = {
 			isa = XCConfigurationList;
@@ -487,6 +504,7 @@
 				3C6FDC1B1B680637006FD19A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

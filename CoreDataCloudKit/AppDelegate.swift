@@ -30,9 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         persistenceController = MCPersistenceController(persistenceReady: {
             // persistence stack is now ready, and we can add the real VC:
-            let listVC = ListViewController(nibName: nil, bundle: nil)
-            listVC.persistenceController = self.persistenceController
-            
+            let listVC = ListViewController(viewModel: ListViewModel(persistenceController: self.persistenceController))
             self.navigationController.setViewControllers([listVC], animated: false)
         })
         
