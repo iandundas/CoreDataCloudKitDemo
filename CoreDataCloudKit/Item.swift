@@ -12,5 +12,6 @@ import CoreData
 class Item: NSManagedObject {
 
     @NSManaged var title: String
+    @NSManaged var created: NSDate
 
 }
