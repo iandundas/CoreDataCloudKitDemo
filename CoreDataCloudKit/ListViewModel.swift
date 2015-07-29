@@ -15,8 +15,35 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
     
     init(persistenceController: MCPersistenceController){
         self.persistenceController = persistenceController
+        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "objectsDidChangeNotification:", name: NSManagedObjectContextObjectsDidChangeNotification, object: nil)
     }
     
+//    @objc func objectsDidChangeNotification(notifiation: NSNotification){
+//        self.persistenceController.managedObjectContext.performBlock({
+//            var error: NSError? = nil
+//            self.fetchedResultsController.performFetch(&error)
+//            assert(error == nil, "Force Fetch on Fetch Results Controller: \(error)")
+//        })
+//    }
+    
+    internal func addNewItem() -> Item{
+        let entity = self.fetchedResultsController.fetchRequest.entity!
+        
+        let item = NSEntityDescription.insertNewObjectForEntityForName(
+            entity.name!,
+            inManagedObjectContext: self.persistenceController.managedObjectContext
+        ) as! Item
+        
+        item.created = NSDate()
+        item.title = "New List Item"
+        
+        persistenceController.save()
+        
+        return item
+    }
+    
+    // MARK public "Internal" Accessors:
     internal var numberOfRows: Int{
         get {
             let sectionInfo = self.fetchedResultsController.sections![0] as! NSFetchedResultsSectionInfo
@@ -28,7 +55,6 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         return fetchedResultsController.objectAtIndexPath(indexPath) as! Item
     }
     
-    // doesn't really need to be lazy, just trying out the syntax:
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
         let fetchRequest = NSFetchRequest()
@@ -39,7 +65,7 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         fetchRequest.fetchBatchSize = 20
         
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(key: "title", ascending: true)
+            NSSortDescriptor(key: "created", ascending: false)
         ]
         
         let frc = NSFetchedResultsController(
@@ -56,5 +82,25 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         
         return frc
     }()
+    
+    
+    // MARK FetchedResultsController Delegate Callbacks:
+    
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        print("Controller will change")
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        print("Controller did change section")
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        print("Controller did change object")
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        print("Controller did change content")
+    }
+    
     
 }

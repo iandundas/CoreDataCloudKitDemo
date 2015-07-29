@@ -21,18 +21,13 @@ class ListViewController: UITableViewController {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-//    required override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-//        self.viewModel = ListViewModel() as! ListViewModel // is there a better way to do this?
-//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-//    }
-//    required init!(coder aDecoder: NSCoder!){
-//        self.viewModel = ListViewModel(persistenceController: MCPersistenceController(persistenceReady: {})!)
-//        super.init(coder: aDecoder)
-//    }
     
     override func viewDidLoad() {
 
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapInsertButton:")
+        self.navigationItem.rightBarButtonItem = addButton
     }
     
     
@@ -40,20 +35,35 @@ class ListViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.numberOfRows
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
-        self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
-    
+
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        self.configureCell(cell, atIndexPath: indexPath)
+    }
+
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let item = viewModel.itemForIndexPath(indexPath)
-        cell.textLabel!.text = item.title
+
+        // apparently you have to do it like this
+        // ( see update here: http://quellish.tumblr.com/post/93190211147/secrets-of-nsfetchedresultscontroller-happiness )
+        item.managedObjectContext?.performBlock{
+            if let someCell = self.tableView.cellForRowAtIndexPath(indexPath) {
+                someCell.textLabel!.text = item.title
+            }
+        }
     }
-    
+
+    // MARK Actions:
+    func didTapInsertButton(sender: AnyObject){
+        viewModel.addNewItem()
+    }
+
 }
