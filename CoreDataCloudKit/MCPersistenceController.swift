@@ -75,10 +75,6 @@ class MCPersistenceController{
     func save(){
         
         // TODO replace with guard statement when 2.0
-        
-        var privateHasChanges = privateContext.hasChanges
-        var mainHasChanges = managedObjectContext.hasChanges
-        
         if privateContext.hasChanges || managedObjectContext.hasChanges {
          
             managedObjectContext.performBlockAndWait{
