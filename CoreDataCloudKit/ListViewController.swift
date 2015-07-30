@@ -15,7 +15,14 @@ class ListViewController: UITableViewController {
     
     init(viewModel: ListViewModel){
         self.viewModel = viewModel
+        
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.willChangeContent = contentWillChange
+        self.viewModel.didChangeContent = contentDidChange
+        
+        self.viewModel.didChangeSection = sectionDidChange
+        self.viewModel.didChangeObject = objectDidChange
     }
     
     required init(coder: NSCoder) {
@@ -29,10 +36,6 @@ class ListViewController: UITableViewController {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapInsertButton:")
         self.navigationItem.rightBarButtonItem = addButton
-        
-        
-        self.viewModel.didChangeSection = sectionDidChange
-        self.viewModel.didChangeContent = contentDidChange
     }
     
     
@@ -72,13 +75,37 @@ class ListViewController: UITableViewController {
     }
     
     // MARK Content did change callbacks:
+    func contentWillChange(){
+        self.tableView.beginUpdates()
+    }
     func contentDidChange(){
-        self.tableView.reloadData()
+        self.tableView.endUpdates()
+    }
+    
+    func objectDidChange(indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?){
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        default:
+            return
+        }
     }
     
     func sectionDidChange(sectionInfo: NSFetchedResultsSectionInfo, sectionIndex: Int, type: NSFetchedResultsChangeType) -> () {
-    
+        switch type {
+        case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        default:
+            return
+        }
     }
-
-
 }

@@ -13,36 +13,47 @@ import CoreData
 class ListViewModel: NSFetchedResultsControllerDelegate{
     
     typealias SectionDidChangeType = ((sectionInfo: NSFetchedResultsSectionInfo, sectionIndex: Int, type: NSFetchedResultsChangeType) -> ())?
-    typealias ObjectDidChangeType = ((anObject: AnyObject, indexPath: NSIndexPath?, type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) -> ())?
-    
-    private var persistenceController: MCPersistenceController
+    typealias ObjectDidChangeType = ((indexPath: NSIndexPath?, type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) -> ())?
     
     internal var willChangeContent: (() -> ())?
     internal var didChangeContent: (() -> ())?
     internal var didChangeSection: SectionDidChangeType
-    // internal var didChangeObject: ObjectDidChangeType // This is bad-  shouldn't be surfacing Model objects outside of the ViewModel
+    internal var didChangeObject: ObjectDidChangeType // This is bad-  shouldn't be surfacing Model objects outside of the ViewModel
     
+    private var persistenceController: MCPersistenceController
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController = {
+        
+        let fetchRequest = NSFetchRequest()
+        fetchRequest.entity = NSEntityDescription.entityForName("Item",
+            inManagedObjectContext: self.persistenceController.managedContext
+        )
+        
+        fetchRequest.fetchBatchSize = 20
+        
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: "created", ascending: false)
+        ]
+        
+        let frc = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: self.persistenceController.managedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        frc.delegate = self
+        
+        var error: NSError? = nil
+        frc.performFetch(&error)
+        assert(error == nil, "Initial Fetch on Fetch Results Controller: \(error)")
+        
+        return frc
+    }()
+    
+
     init(persistenceController: MCPersistenceController){
         self.persistenceController = persistenceController
     }
-    
-    // MARK FetchedResultsController Delegate Callbacks:
-    @objc
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        willChangeContent?()
-    }
-    @objc
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        didChangeContent?()
-    }
-    @objc
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        didChangeSection?(sectionInfo: sectionInfo, sectionIndex: sectionIndex, type: type)
-    }
-//    @objc
-//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-//        didChangeObject?(anObject: anObject, indexPath: indexPath, type: type, newIndexPath: indexPath)
-//    }
     
     internal func addNewItem() -> Item{
         let entity = self.fetchedResultsController.fetchRequest.entity!
@@ -72,31 +83,22 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         return fetchedResultsController.objectAtIndexPath(indexPath) as! Item
     }
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
-        
-        let fetchRequest = NSFetchRequest()
-        fetchRequest.entity = NSEntityDescription.entityForName("Item",
-            inManagedObjectContext: self.persistenceController.managedContext
-        )
-        
-        fetchRequest.fetchBatchSize = 20
-        
-        fetchRequest.sortDescriptors = [
-            NSSortDescriptor(key: "created", ascending: false)
-        ]
-        
-        let frc = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: self.persistenceController.managedContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil
-        )
-        frc.delegate = self
-        
-        var error: NSError? = nil
-        frc.performFetch(&error)
-        assert(error == nil, "Initial Fetch on Fetch Results Controller: \(error)")
-        
-        return frc
-    }()
+    
+    // MARK FetchedResultsController Delegate Callbacks:
+    @objc
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        willChangeContent?()
+    }
+    @objc
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        didChangeContent?()
+    }
+    @objc
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        didChangeSection?(sectionInfo: sectionInfo, sectionIndex: sectionIndex, type: type)
+    }
+    @objc
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        didChangeObject?(indexPath: indexPath, type: type, newIndexPath: newIndexPath)
+    }
 }
