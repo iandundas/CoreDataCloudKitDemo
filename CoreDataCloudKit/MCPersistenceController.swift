@@ -17,7 +17,7 @@ class MCPersistenceController{
     
     // this is our Single Source Of Truth.
     // will be used by our User Interface (and therefore exposed outside of this controller.
-    let managedObjectContext: NSManagedObjectContext // TODO rename mainContext
+    let managedContext: NSManagedObjectContext // TODO rename mainContext
     
     // we specifically want this to be asynchronous from the UI.
     // the private queue context has one job in life. It writes to disk.
@@ -26,7 +26,7 @@ class MCPersistenceController{
     
     
     init?(persistenceReady: PersistenceReadyType) {
-        managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         
         if let  modelURL = NSBundle.mainBundle().URLForResource("CoreDataCloudKit", withExtension: "momd"),
@@ -36,7 +36,7 @@ class MCPersistenceController{
             
             privateContext.persistentStoreCoordinator = coordinator
             
-            managedObjectContext.parentContext = privateContext
+            managedContext.parentContext = privateContext
         }
         else{
             assertionFailure("Could not find/initialise Model file")
@@ -75,11 +75,11 @@ class MCPersistenceController{
     func save(){
         
         // TODO replace with guard statement when 2.0
-        if privateContext.hasChanges || managedObjectContext.hasChanges {
+        if privateContext.hasChanges || managedContext.hasChanges {
          
-            managedObjectContext.performBlockAndWait{
+            managedContext.performBlockAndWait{
                 var error: NSError?
-                assert(self.managedObjectContext.save(&error), "Failed to save on the Main Context with [error: \(error?.localizedDescription), userInfo: \(error?.userInfo)]")
+                assert(self.managedContext.save(&error), "Failed to save on the Main Context with [error: \(error?.localizedDescription), userInfo: \(error?.userInfo)]")
                 
                 // perform on another queue, allowing method to return (privateContext shouldn't block thread)
                 self.privateContext.performBlock{

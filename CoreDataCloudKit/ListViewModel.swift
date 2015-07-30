@@ -9,30 +9,22 @@
 import Foundation
 import CoreData
 
+
 class ListViewModel: NSFetchedResultsControllerDelegate{
     
     internal var persistenceController: MCPersistenceController
     
     init(persistenceController: MCPersistenceController){
         self.persistenceController = persistenceController
-        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "objectsDidChangeNotification:", name: NSManagedObjectContextObjectsDidChangeNotification, object: nil)
     }
-    
-//    @objc func objectsDidChangeNotification(notifiation: NSNotification){
-//        self.persistenceController.managedObjectContext.performBlock({
-//            var error: NSError? = nil
-//            self.fetchedResultsController.performFetch(&error)
-//            assert(error == nil, "Force Fetch on Fetch Results Controller: \(error)")
-//        })
-//    }
+
     
     internal func addNewItem() -> Item{
         let entity = self.fetchedResultsController.fetchRequest.entity!
         
         let item = NSEntityDescription.insertNewObjectForEntityForName(
             entity.name!,
-            inManagedObjectContext: self.persistenceController.managedObjectContext
+            inManagedObjectContext: self.persistenceController.managedContext
         ) as! Item
         
         item.created = NSDate()
@@ -43,7 +35,7 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         return item
     }
     
-    // MARK public "Internal" Accessors:
+    // MARK Accessors:
     internal var numberOfRows: Int{
         get {
             let sectionInfo = self.fetchedResultsController.sections![0] as! NSFetchedResultsSectionInfo
@@ -59,7 +51,7 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         
         let fetchRequest = NSFetchRequest()
         fetchRequest.entity = NSEntityDescription.entityForName("Item",
-            inManagedObjectContext: self.persistenceController.managedObjectContext
+            inManagedObjectContext: self.persistenceController.managedContext
         )
         
         fetchRequest.fetchBatchSize = 20
@@ -70,7 +62,7 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
-            managedObjectContext: self.persistenceController.managedObjectContext,
+            managedObjectContext: self.persistenceController.managedContext,
             sectionNameKeyPath: nil,
             cacheName: nil
         )

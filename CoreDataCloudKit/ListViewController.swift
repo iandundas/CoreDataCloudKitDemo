@@ -25,7 +25,9 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
 
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapInsertButton:")
         self.navigationItem.rightBarButtonItem = addButton
     }
