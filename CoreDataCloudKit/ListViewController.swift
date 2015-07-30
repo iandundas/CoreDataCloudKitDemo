@@ -41,7 +41,7 @@ class ListViewController: UITableViewController {
     
     // MARK TableViewDataSource:
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.viewModel.numberOfSections
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

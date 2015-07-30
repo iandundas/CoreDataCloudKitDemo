@@ -79,6 +79,12 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         }
     }
     
+    internal var numberOfSections: Int{
+        get {
+            return 1
+        }
+    }
+    
     internal func itemForIndexPath(indexPath: NSIndexPath) -> Item{
         return fetchedResultsController.objectAtIndexPath(indexPath) as! Item
     }
