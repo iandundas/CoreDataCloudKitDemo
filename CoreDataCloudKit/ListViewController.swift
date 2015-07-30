@@ -9,9 +9,17 @@
 import UIKit
 import CoreData
 
-class ListViewController: UITableViewController {
+class ListViewController: UITableViewController, UIGestureRecognizerDelegate {
 
     let viewModel: ListViewModel
+    
+    lazy var longPressRecogniser: UILongPressGestureRecognizer = {
+        let recogniser = UILongPressGestureRecognizer(target: self, action: "didLongPressOnTableWithRecogniser:")
+        recogniser.minimumPressDuration = 0.3
+        recogniser.delegate = self
+        return recogniser
+    }()
+    
     
     init(viewModel: ListViewModel){
         self.viewModel = viewModel
@@ -34,10 +42,19 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         title = "💂🏻"
         
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
+        self.tableView.addGestureRecognizer(longPressRecogniser)
+        
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "didTapDebugButton:")
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapInsertButton:")
         self.navigationItem.rightBarButtonItem = addButton
+    }
+    
+    // Debugging
+    func didTapDebugButton(sender: AnyObject?){
+        
     }
     
     
@@ -85,6 +102,17 @@ class ListViewController: UITableViewController {
     func didTapInsertButton(sender: AnyObject){
         viewModel.addNewItem()
     }
+
+    func didLongPressOnTableWithRecogniser(gestureRecogniser: UILongPressGestureRecognizer){
+        if (gestureRecogniser.state == UIGestureRecognizerState.Began){
+            let point = gestureRecogniser.locationInView(self.tableView)
+            if let indexPath = self.tableView.indexPathForRowAtPoint(point){
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextFieldCell
+                cell.becomeFirstResponder()
+            }
+        }
+    }
+
     
     // MARK Content did change callbacks:
     func contentWillChange(){
