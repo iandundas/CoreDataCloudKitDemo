@@ -17,6 +17,9 @@
 		3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC281B683A52006FD19A /* ListViewController.swift */; };
 		3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */; };
 		3C9D8D8F1B69132000B39776 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8E1B69132000B39776 /* Item.swift */; };
+		3CD4A0171B6A874E00287789 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4A0161B6A874E00287789 /* TextFieldCell.swift */; };
+		3CD4A0191B6A875F00287789 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD4A0181B6A875F00287789 /* TextFieldCell.xib */; };
+		3CD4A01B1B6A9B1E00287789 /* TextFieldCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4A01A1B6A9B1E00287789 /* TextFieldCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		3C6FDC281B683A52006FD19A /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3C9D8D8E1B69132000B39776 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		3CD4A0161B6A874E00287789 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		3CD4A0181B6A875F00287789 /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		3CD4A01A1B6A9B1E00287789 /* TextFieldCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 		3C6FDBF41B680637006FD19A /* CoreDataCloudKit */ = {
 			isa = PBXGroup;
 			children = (
+				3CD4A0151B6A86E900287789 /* Cells */,
 				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
 				3C6FDC261B683A1D006FD19A /* Views */,
 				3C6FDC251B6838E9006FD19A /* Frameworks */,
@@ -165,6 +172,16 @@
 				3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		3CD4A0151B6A86E900287789 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3CD4A0161B6A874E00287789 /* TextFieldCell.swift */,
+				3CD4A0181B6A875F00287789 /* TextFieldCell.xib */,
+				3CD4A01A1B6A9B1E00287789 /* TextFieldCellViewModel.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +272,7 @@
 			files = (
 				3C6FDC071B680637006FD19A /* LaunchScreen.xib in Resources */,
 				3C6FDC041B680637006FD19A /* Images.xcassets in Resources */,
+				3CD4A0191B6A875F00287789 /* TextFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +294,9 @@
 				3C9D8D8F1B69132000B39776 /* Item.swift in Sources */,
 				3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */,
 				3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */,
+				3CD4A01B1B6A9B1E00287789 /* TextFieldCellViewModel.swift in Sources */,
 				3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */,
+				3CD4A0171B6A874E00287789 /* TextFieldCell.swift in Sources */,
 				3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

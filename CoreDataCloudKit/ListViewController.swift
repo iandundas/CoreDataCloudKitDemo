@@ -24,7 +24,7 @@ class ListViewController: UITableViewController {
         self.viewModel.didChangeSection = sectionDidChange
         self.viewModel.didChangeObject = objectDidChange
         
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.tableView.registerNib(UINib(nibName: "TextFieldCell", bundle: nil), forCellReuseIdentifier: "Cell")
     }
     
     required init(coder: NSCoder) {
@@ -41,7 +41,8 @@ class ListViewController: UITableViewController {
     }
     
     
-    // MARK TableViewDataSource:
+    
+    // MARK TableView:
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.viewModel.numberOfSections
     }
@@ -60,14 +61,8 @@ class ListViewController: UITableViewController {
     }
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let item = viewModel.itemForIndexPath(indexPath)
-
-        // apparently you have to do it like this
-        // ( see update here: http://quellish.tumblr.com/post/93190211147/secrets-of-nsfetchedresultscontroller-happiness )
-        item.managedObjectContext?.performBlock{
-            if let someCell = self.tableView.cellForRowAtIndexPath(indexPath) {
-                someCell.textLabel!.text = item.title
-            }
+        if let cell = cell as? TextFieldCell{
+            cell.viewModel = viewModel.cellViewModelForIndexPath(indexPath)
         }
     }
 
@@ -81,6 +76,10 @@ class ListViewController: UITableViewController {
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.endEditing(true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     
     // MARK Actions:
     func didTapInsertButton(sender: AnyObject){

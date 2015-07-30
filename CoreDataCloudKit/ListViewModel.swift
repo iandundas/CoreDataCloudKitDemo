@@ -55,6 +55,7 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         self.persistenceController = persistenceController
     }
     
+    // MARK Create/Update/Delete:
     internal func addNewItem() -> Item{
         let entity = self.fetchedResultsController.fetchRequest.entity!
         
@@ -71,7 +72,6 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         return item
     }
     
-    // TODO decide if I want to refer to things with IndexPath inside the Viewmodel, or just pass the item to be deleted.
     internal func deleteItemWithIndexPath(indexPath: NSIndexPath){
         let context = self.fetchedResultsController.managedObjectContext
         context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
@@ -93,10 +93,34 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         }
     }
     
-    internal func itemForIndexPath(indexPath: NSIndexPath) -> Item{
-        return fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+    // MARK child view models:
+    
+    internal func cellViewModelForIndexPath(let indexPath: NSIndexPath) -> TextFieldCellViewModel{
+        let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+        
+        // set Value:
+        let cellViewModel = TextFieldCellViewModel()
+        item.managedObjectContext?.performBlockAndWait{
+            cellViewModel.value = item.title
+        }
+        
+        // set ValueDidChange:
+        cellViewModel.valueDidChange = { [weak item ] newText in
+            let newnewText = newText // compiler crashes otherwise..
+            
+            item?.managedObjectContext?.performBlock{ [weak self] in
+                item?.title = newnewText
+                self!.persistenceController.save()
+            }
+        }
+        
+        return cellViewModel
     }
     
+    //MARK private:
+    private func itemForIndexPath(indexPath: NSIndexPath) -> Item{
+        return fetchedResultsController.objectAtIndexPath(indexPath) as! Item
+    }
     
     // MARK FetchedResultsController Delegate Callbacks:
     @objc
