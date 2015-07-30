@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		3C6FDBF81B680637006FD19A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF71B680637006FD19A /* AppDelegate.swift */; };
 		3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */; };
-		3C6FDBFD1B680637006FD19A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBFC1B680637006FD19A /* MasterViewController.swift */; };
-		3C6FDBFF1B680637006FD19A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBFE1B680637006FD19A /* DetailViewController.swift */; };
 		3C6FDC041B680637006FD19A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC031B680637006FD19A /* Images.xcassets */; };
 		3C6FDC071B680637006FD19A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC051B680637006FD19A /* LaunchScreen.xib */; };
 		3C6FDC131B680637006FD19A /* CoreDataCloudKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC121B680637006FD19A /* CoreDataCloudKitTests.swift */; };
@@ -37,8 +35,6 @@
 		3C6FDBF61B680637006FD19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6FDBF71B680637006FD19A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C6FDBFA1B680637006FD19A /* CoreDataCloudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataCloudKit.xcdatamodel; sourceTree = "<group>"; };
-		3C6FDBFC1B680637006FD19A /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		3C6FDBFE1B680637006FD19A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3C6FDC031B680637006FD19A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3C6FDC061B680637006FD19A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3C6FDC0C1B680637006FD19A /* CoreDataCloudKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataCloudKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
-				3C6FDC271B683A28006FD19A /* AppleTemplate */,
 				3C6FDC261B683A1D006FD19A /* Views */,
 				3C6FDC251B6838E9006FD19A /* Frameworks */,
 				3C6FDC241B6838D1006FD19A /* Persistence */,
@@ -164,15 +159,6 @@
 				3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		3C6FDC271B683A28006FD19A /* AppleTemplate */ = {
-			isa = PBXGroup;
-			children = (
-				3C6FDBFC1B680637006FD19A /* MasterViewController.swift */,
-				3C6FDBFE1B680637006FD19A /* DetailViewController.swift */,
-			);
-			name = AppleTemplate;
 			sourceTree = "<group>";
 		};
 		3C9D8D901B69133000B39776 /* Model */ = {
@@ -293,9 +279,7 @@
 				3C9D8D8F1B69132000B39776 /* Item.swift in Sources */,
 				3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */,
 				3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */,
-				3C6FDBFD1B680637006FD19A /* MasterViewController.swift in Sources */,
 				3C6FDC231B683029006FD19A /* Threading.swift in Sources */,
-				3C6FDBFF1B680637006FD19A /* DetailViewController.swift in Sources */,
 				3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */,
 				3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */,
 			);
