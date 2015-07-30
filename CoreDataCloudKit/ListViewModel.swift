@@ -66,9 +66,17 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         item.created = NSDate()
         item.title = "New List Item"
         
-        persistenceController.save()
+        persistenceController.save() // FIXME decide whether to save here or not
         
         return item
+    }
+    
+    // TODO decide if I want to refer to things with IndexPath inside the Viewmodel, or just pass the item to be deleted.
+    internal func deleteItemWithIndexPath(indexPath: NSIndexPath){
+        let context = self.fetchedResultsController.managedObjectContext
+        context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
+        
+        persistenceController.save() // FIXME decide whether to save here or not
     }
     
     // MARK Accessors:

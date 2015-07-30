@@ -23,6 +23,8 @@ class ListViewController: UITableViewController {
         
         self.viewModel.didChangeSection = sectionDidChange
         self.viewModel.didChangeObject = objectDidChange
+        
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
     required init(coder: NSCoder) {
@@ -30,7 +32,7 @@ class ListViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        title = "💂🏻"
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
@@ -69,6 +71,17 @@ class ListViewController: UITableViewController {
         }
     }
 
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            self.viewModel.deleteItemWithIndexPath(indexPath)
+        }
+    }
+
+    
     // MARK Actions:
     func didTapInsertButton(sender: AnyObject){
         viewModel.addNewItem()

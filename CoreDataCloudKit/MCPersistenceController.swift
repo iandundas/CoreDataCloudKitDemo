@@ -72,7 +72,7 @@ class MCPersistenceController{
         }
     }
     
-    func save(){
+    func save(){ // this should possibly have a success and failure block provided
         
         // TODO replace with guard statement when 2.0
         if privateContext.hasChanges || managedContext.hasChanges {
