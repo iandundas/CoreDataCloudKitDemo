@@ -14,7 +14,6 @@
 		3C6FDC131B680637006FD19A /* CoreDataCloudKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC121B680637006FD19A /* CoreDataCloudKitTests.swift */; };
 		3C6FDC1E1B680648006FD19A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C6FDC1D1B680648006FD19A /* CloudKit.framework */; };
 		3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */; };
-		3C6FDC231B683029006FD19A /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC221B683029006FD19A /* Threading.swift */; };
 		3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC281B683A52006FD19A /* ListViewController.swift */; };
 		3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */; };
 		3C9D8D8F1B69132000B39776 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8E1B69132000B39776 /* Item.swift */; };
@@ -43,7 +42,6 @@
 		3C6FDC1C1B680641006FD19A /* CoreDataCloudKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreDataCloudKit.entitlements; sourceTree = "<group>"; };
 		3C6FDC1D1B680648006FD19A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCPersistenceController.swift; sourceTree = "<group>"; };
-		3C6FDC221B683029006FD19A /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		3C6FDC281B683A52006FD19A /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		3C9D8D8E1B69132000B39776 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 		3C6FDC211B683018006FD19A /* Operators */ = {
 			isa = PBXGroup;
 			children = (
-				3C6FDC221B683029006FD19A /* Threading.swift */,
 			);
 			name = Operators;
 			sourceTree = "<group>";
@@ -279,7 +276,6 @@
 				3C9D8D8F1B69132000B39776 /* Item.swift in Sources */,
 				3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */,
 				3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */,
-				3C6FDC231B683029006FD19A /* Threading.swift in Sources */,
 				3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */,
 				3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */,
 			);
