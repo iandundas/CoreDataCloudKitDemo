@@ -12,12 +12,37 @@ import CoreData
 
 class ListViewModel: NSFetchedResultsControllerDelegate{
     
-    internal var persistenceController: MCPersistenceController
+    typealias SectionDidChangeType = ((sectionInfo: NSFetchedResultsSectionInfo, sectionIndex: Int, type: NSFetchedResultsChangeType) -> ())?
+    typealias ObjectDidChangeType = ((anObject: AnyObject, indexPath: NSIndexPath?, type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) -> ())?
+    
+    private var persistenceController: MCPersistenceController
+    
+    internal var willChangeContent: (() -> ())?
+    internal var didChangeContent: (() -> ())?
+    internal var didChangeSection: SectionDidChangeType
+    // internal var didChangeObject: ObjectDidChangeType // This is bad-  shouldn't be surfacing Model objects outside of the ViewModel
     
     init(persistenceController: MCPersistenceController){
         self.persistenceController = persistenceController
     }
-
+    
+    // MARK FetchedResultsController Delegate Callbacks:
+    @objc
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        willChangeContent?()
+    }
+    @objc
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        didChangeContent?()
+    }
+    @objc
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        didChangeSection?(sectionInfo: sectionInfo, sectionIndex: sectionIndex, type: type)
+    }
+//    @objc
+//    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+//        didChangeObject?(anObject: anObject, indexPath: indexPath, type: type, newIndexPath: indexPath)
+//    }
     
     internal func addNewItem() -> Item{
         let entity = self.fetchedResultsController.fetchRequest.entity!
@@ -74,25 +99,4 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
         
         return frc
     }()
-    
-    
-    // MARK FetchedResultsController Delegate Callbacks:
-    @objc
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        print("Controller will change")
-    }
-    @objc
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        print("Controller did change section")
-    }
-    @objc
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        print("Controller did change object")
-    }
-    @objc
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        print("Controller did change content")
-    }
-    
-    
 }

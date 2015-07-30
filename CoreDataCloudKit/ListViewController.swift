@@ -23,13 +23,16 @@ class ListViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "didTapInsertButton:")
         self.navigationItem.rightBarButtonItem = addButton
+        
+        
+        self.viewModel.didChangeSection = sectionDidChange
+        self.viewModel.didChangeContent = contentDidChange
     }
     
     
@@ -67,5 +70,15 @@ class ListViewController: UITableViewController {
     func didTapInsertButton(sender: AnyObject){
         viewModel.addNewItem()
     }
+    
+    // MARK Content did change callbacks:
+    func contentDidChange(){
+        self.tableView.reloadData()
+    }
+    
+    func sectionDidChange(sectionInfo: NSFetchedResultsSectionInfo, sectionIndex: Int, type: NSFetchedResultsChangeType) -> () {
+    
+    }
+
 
 }
