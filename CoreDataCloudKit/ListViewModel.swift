@@ -85,19 +85,19 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
     
     
     // MARK FetchedResultsController Delegate Callbacks:
-    
+    @objc
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         print("Controller will change")
     }
-    
+    @objc
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         print("Controller did change section")
     }
-    
+    @objc
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         print("Controller did change object")
     }
-    
+    @objc
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         print("Controller did change content")
     }
