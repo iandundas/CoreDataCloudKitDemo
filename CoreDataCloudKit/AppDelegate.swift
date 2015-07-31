@@ -9,7 +9,10 @@
 import UIKit
 import CoreData
 
-@UIApplicationMain
+//@UIApplicationMain
+class TestingAppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+}
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
