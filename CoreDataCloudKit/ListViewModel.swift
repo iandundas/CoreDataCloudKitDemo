@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class ListViewModel: NSFetchedResultsControllerDelegate{
+public class ListViewModel: NSFetchedResultsControllerDelegate{
     
     typealias SectionDidChangeType = ((sectionInfo: NSFetchedResultsSectionInfo, sectionIndex: Int, type: NSFetchedResultsChangeType) -> ())?
     typealias ObjectDidChangeType = ((indexPath: NSIndexPath?, type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) -> ())?
@@ -51,7 +51,7 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
     }()
     
 
-    init(persistenceController: MCPersistenceController){
+    public init(persistenceController: MCPersistenceController){
         self.persistenceController = persistenceController
     }
     
@@ -124,19 +124,19 @@ class ListViewModel: NSFetchedResultsControllerDelegate{
     
     // MARK FetchedResultsController Delegate Callbacks:
     @objc
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    public func controllerWillChangeContent(controller: NSFetchedResultsController) {
         willChangeContent?()
     }
     @objc
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    public func controllerDidChangeContent(controller: NSFetchedResultsController) {
         didChangeContent?()
     }
     @objc
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         didChangeSection?(sectionInfo: sectionInfo, sectionIndex: sectionIndex, type: type)
     }
     @objc
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         didChangeObject?(indexPath: indexPath, type: type, newIndexPath: newIndexPath)
     }
 }
