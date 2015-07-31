@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             // persistence stack is now ready, and we can add the real VC:
             let listVC = ListViewController(viewModel: ListViewModel(persistenceController: self.persistenceController))
             self.navigationController.setViewControllers([listVC], animated: false)
-        })
+        }, persistenceType: PersistenceType.SQLLite)
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

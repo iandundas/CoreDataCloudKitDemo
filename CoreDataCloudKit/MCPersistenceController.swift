@@ -11,9 +11,14 @@
 import Foundation
 import CoreData
 
-class MCPersistenceController{
+public enum PersistenceType{
+    case SQLLite
+    case InMemory
+}
+
+public class MCPersistenceController{
     
-    typealias PersistenceReadyType = () -> ()
+    public typealias PersistenceReadyType = () -> ()
     
     // this is our Single Source Of Truth.
     // will be used by our User Interface (and therefore exposed outside of this controller.
@@ -25,12 +30,12 @@ class MCPersistenceController{
     private let privateContext: NSManagedObjectContext
     
     
-    init?(persistenceReady: PersistenceReadyType) {
+    public init?(persistenceReady: PersistenceReadyType, persistenceType: PersistenceType = PersistenceType.SQLLite){
         managedContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         
         if let  modelURL = NSBundle.mainBundle().URLForResource("CoreDataCloudKit", withExtension: "momd"),
-                mom = NSManagedObjectModel(contentsOfURL: modelURL)
+            mom = NSManagedObjectModel(contentsOfURL: modelURL)
         {
             let coordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
             
@@ -42,11 +47,11 @@ class MCPersistenceController{
             assertionFailure("Could not find/initialise Model file")
             return nil
         }
-        
-        initialisePersistentStore(persistenceReady)
+
+        initialisePersistentStore(persistenceReady, storeType: persistenceType)
     }
     
-    func initialisePersistentStore(persistenceReady: PersistenceReadyType){
+    func initialisePersistentStore(persistenceReady: PersistenceReadyType, storeType: PersistenceType){
         
         let priority = DISPATCH_QUEUE_PRIORITY_BACKGROUND
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
@@ -58,15 +63,25 @@ class MCPersistenceController{
                 NSInferMappingModelAutomaticallyOption: true,
                 NSSQLitePragmasOption: ["journal_mode": "DELETE"]
             ]
-            
-            let fileManager = NSFileManager.defaultManager()
-            let documentsURL = fileManager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last as! NSURL
-            
-            let storeURL = documentsURL.URLByAppendingPathComponent("DataModel.sqlite")
-            
-            var error: NSError?
-            psc?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options, error: &error)
-            assert(error == nil, "Could not create persistent store: \(error)")
+
+            switch storeType{
+            case .SQLLite:
+                let fileManager = NSFileManager.defaultManager()
+                let documentsURL = fileManager.URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).last as! NSURL
+                let storeURL = documentsURL.URLByAppendingPathComponent("DataModel.sqlite")
+                
+                var error: NSError?
+                var store = psc?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options, error: &error)
+                assert(store != nil, "Store should be not be nil")
+                assert(error == nil, "Could not create persistent store: \(error)")
+                
+            case .InMemory:
+                var error: NSError?
+                var store = psc?.addPersistentStoreWithType(NSInMemoryStoreType, configuration: nil, URL: nil, options: options, error: &error)
+                assert(store != nil, "Store should be not be nil")
+                assert(error == nil, "Could not create persistent store: \(error)")
+            }
+
 
             dispatch_async(dispatch_get_main_queue(), persistenceReady)
         }
