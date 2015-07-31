@@ -1,0 +1,6 @@
+framework module Nimble {
+  umbrella header "Pods-CoreDataCloudKitTests-Nimble-umbrella.h"
+
+  export *
+  module * { export * }
+}

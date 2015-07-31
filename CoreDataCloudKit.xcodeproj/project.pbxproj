@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C5E07131B6ACEF000E6332A /* ListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07121B6ACEF000E6332A /* ListViewControllerSpec.swift */; };
+		3C5E07151B6AD26300E6332A /* IanQuickSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */; };
+		3C5E07191B6C123800E6332A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07181B6C123800E6332A /* main.swift */; };
 		3C6FDBF81B680637006FD19A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF71B680637006FD19A /* AppDelegate.swift */; };
 		3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */; };
 		3C6FDC041B680637006FD19A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC031B680637006FD19A /* Images.xcassets */; };
 		3C6FDC071B680637006FD19A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC051B680637006FD19A /* LaunchScreen.xib */; };
-		3C6FDC131B680637006FD19A /* CoreDataCloudKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC121B680637006FD19A /* CoreDataCloudKitTests.swift */; };
 		3C6FDC1E1B680648006FD19A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C6FDC1D1B680648006FD19A /* CloudKit.framework */; };
 		3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */; };
 		3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC281B683A52006FD19A /* ListViewController.swift */; };
@@ -20,6 +22,7 @@
 		3CD4A0171B6A874E00287789 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4A0161B6A874E00287789 /* TextFieldCell.swift */; };
 		3CD4A0191B6A875F00287789 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD4A0181B6A875F00287789 /* TextFieldCell.xib */; };
 		3CD4A01B1B6A9B1E00287789 /* TextFieldCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4A01A1B6A9B1E00287789 /* TextFieldCellViewModel.swift */; };
+		E26EBB786C4D7C1EDB3A43B9 /* Pods_CoreDataCloudKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75242BD7AFAE1D84C6A59A40 /* Pods_CoreDataCloudKitTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30E1782C9F79C0EF30D0EFC8 /* Pods-CoreDataCloudKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataCloudKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataCloudKitTests/Pods-CoreDataCloudKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C5E07121B6ACEF000E6332A /* ListViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewControllerSpec.swift; sourceTree = "<group>"; };
+		3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IanQuickSpec.swift; sourceTree = "<group>"; };
+		3C5E07181B6C123800E6332A /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3C6FDBF21B680637006FD19A /* CoreDataCloudKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataCloudKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6FDBF61B680637006FD19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6FDBF71B680637006FD19A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,7 +48,6 @@
 		3C6FDC061B680637006FD19A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3C6FDC0C1B680637006FD19A /* CoreDataCloudKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataCloudKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6FDC111B680637006FD19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C6FDC121B680637006FD19A /* CoreDataCloudKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCloudKitTests.swift; sourceTree = "<group>"; };
 		3C6FDC1C1B680641006FD19A /* CoreDataCloudKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CoreDataCloudKit.entitlements; sourceTree = "<group>"; };
 		3C6FDC1D1B680648006FD19A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MCPersistenceController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -51,6 +57,8 @@
 		3CD4A0161B6A874E00287789 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		3CD4A0181B6A875F00287789 /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		3CD4A01A1B6A9B1E00287789 /* TextFieldCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCellViewModel.swift; sourceTree = "<group>"; };
+		75242BD7AFAE1D84C6A59A40 /* Pods_CoreDataCloudKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataCloudKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8125BDC05FA4AD56F8FB6FA3 /* Pods-CoreDataCloudKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataCloudKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataCloudKitTests/Pods-CoreDataCloudKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E26EBB786C4D7C1EDB3A43B9 /* Pods_CoreDataCloudKitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,8 @@
 				3C6FDBF41B680637006FD19A /* CoreDataCloudKit */,
 				3C6FDC0F1B680637006FD19A /* CoreDataCloudKitTests */,
 				3C6FDBF31B680637006FD19A /* Products */,
+				48E710BA8FEBF657D35C44A3 /* Pods */,
+				84128C33A69A77B7FEE7DB79 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +112,7 @@
 				3C6FDC211B683018006FD19A /* Operators */,
 				3C6FDC031B680637006FD19A /* Images.xcassets */,
 				3C6FDBF51B680637006FD19A /* Supporting Files */,
+				3C5E07181B6C123800E6332A /* main.swift */,
 			);
 			path = CoreDataCloudKit;
 			sourceTree = "<group>";
@@ -118,8 +130,9 @@
 		3C6FDC0F1B680637006FD19A /* CoreDataCloudKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				3C6FDC121B680637006FD19A /* CoreDataCloudKitTests.swift */,
 				3C6FDC101B680637006FD19A /* Supporting Files */,
+				3C5E07121B6ACEF000E6332A /* ListViewControllerSpec.swift */,
+				3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */,
 			);
 			path = CoreDataCloudKitTests;
 			sourceTree = "<group>";
@@ -184,6 +197,23 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		48E710BA8FEBF657D35C44A3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8125BDC05FA4AD56F8FB6FA3 /* Pods-CoreDataCloudKitTests.debug.xcconfig */,
+				30E1782C9F79C0EF30D0EFC8 /* Pods-CoreDataCloudKitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		84128C33A69A77B7FEE7DB79 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75242BD7AFAE1D84C6A59A40 /* Pods_CoreDataCloudKitTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,9 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C6FDC191B680637006FD19A /* Build configuration list for PBXNativeTarget "CoreDataCloudKitTests" */;
 			buildPhases = (
+				0B1D66CD18440052376B40A5 /* Check Pods Manifest.lock */,
 				3C6FDC081B680637006FD19A /* Sources */,
 				3C6FDC091B680637006FD19A /* Frameworks */,
 				3C6FDC0A1B680637006FD19A /* Resources */,
+				4592A63DE3E00A546EA2679B /* Embed Pods Frameworks */,
+				32E6EFEC1F2098189B64AFD6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -285,6 +318,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0B1D66CD18440052376B40A5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		32E6EFEC1F2098189B64AFD6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoreDataCloudKitTests/Pods-CoreDataCloudKitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4592A63DE3E00A546EA2679B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoreDataCloudKitTests/Pods-CoreDataCloudKitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3C6FDBEE1B680637006FD19A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -297,6 +378,7 @@
 				3CD4A01B1B6A9B1E00287789 /* TextFieldCellViewModel.swift in Sources */,
 				3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */,
 				3CD4A0171B6A874E00287789 /* TextFieldCell.swift in Sources */,
+				3C5E07191B6C123800E6332A /* main.swift in Sources */,
 				3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +387,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C6FDC131B680637006FD19A /* CoreDataCloudKitTests.swift in Sources */,
+				3C5E07131B6ACEF000E6332A /* ListViewControllerSpec.swift in Sources */,
+				3C5E07151B6AD26300E6332A /* IanQuickSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +504,7 @@
 				CODE_SIGN_ENTITLEMENTS = CoreDataCloudKit/CoreDataCloudKit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = CoreDataCloudKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,6 +519,7 @@
 				CODE_SIGN_ENTITLEMENTS = CoreDataCloudKit/CoreDataCloudKit.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = CoreDataCloudKit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -444,6 +529,7 @@
 		};
 		3C6FDC1A1B680637006FD19A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8125BDC05FA4AD56F8FB6FA3 /* Pods-CoreDataCloudKitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -463,6 +549,7 @@
 		};
 		3C6FDC1B1B680637006FD19A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30E1782C9F79C0EF30D0EFC8 /* Pods-CoreDataCloudKitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
