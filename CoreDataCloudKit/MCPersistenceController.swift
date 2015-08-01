@@ -16,19 +16,23 @@ public enum PersistenceType{
     case InMemory
 }
 
-public class MCPersistenceController{
-    
-    public typealias PersistenceReadyType = () -> ()
+public typealias PersistenceReadyType = () -> ()
+
+public protocol PersistenceController{
+    var managedContext: NSManagedObjectContext{get}
+    func save()
+}
+
+public class MCPersistenceController : PersistenceController{
     
     // this is our Single Source Of Truth.
     // will be used by our User Interface (and therefore exposed outside of this controller.
-    let managedContext: NSManagedObjectContext // TODO rename mainContext
+    public let managedContext: NSManagedObjectContext // TODO rename mainContext
     
     // we specifically want this to be asynchronous from the UI.
     // the private queue context has one job in life. It writes to disk.
     // we want to avoid locking the UI as much as possible because of the persistence layer.
     private let privateContext: NSManagedObjectContext
-    
     
     public init?(persistenceReady: PersistenceReadyType, persistenceType: PersistenceType = PersistenceType.SQLLite){
         managedContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
@@ -47,11 +51,47 @@ public class MCPersistenceController{
             assertionFailure("Could not find/initialise Model file")
             return nil
         }
-
+        
         initialisePersistentStore(persistenceReady, storeType: persistenceType)
     }
     
-    func initialisePersistentStore(persistenceReady: PersistenceReadyType, storeType: PersistenceType){
+    public func save(){ // this should possibly have a success and failure block provided
+        
+        // TODO replace with guard statement when 2.0
+        if privateContext.hasChanges || managedContext.hasChanges {
+            
+            managedContext.performBlockAndWait{
+                var error: NSError?
+                assert(self.managedContext.save(&error), "Failed to save on the Main Context with [error: \(error?.localizedDescription), userInfo: \(error?.userInfo)]")
+                
+                // perform on another queue, allowing method to return (privateContext shouldn't block thread)
+                self.privateContext.performBlock{
+                    var privateError: NSError?
+                    assert(self.privateContext.save(&privateError), "Failed to save on the Background Context with [error: \(error?.localizedDescription), userInfo: \(error?.userInfo)]")
+                }
+            }
+        }
+    }
+    
+    /*
+        TODO: use this Swiftier version of save:
+    
+    var error: NSError?
+    let success: Bool = managedObjectContext.save(&error)
+    // handle success or error
+    
+    // make it Swift-er
+    func saveContext(context:) -> (success: Bool, error: NSError?)
+    
+    // Example
+    let result = saveContext(context)
+    if !result.success {
+    println("Error: \(result.error)")
+    }
+
+    */
+    
+    private func initialisePersistentStore(persistenceReady: PersistenceReadyType, storeType: PersistenceType){
         
         let priority = DISPATCH_QUEUE_PRIORITY_BACKGROUND
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
@@ -63,7 +103,7 @@ public class MCPersistenceController{
                 NSInferMappingModelAutomaticallyOption: true,
                 NSSQLitePragmasOption: ["journal_mode": "DELETE"]
             ]
-
+            
             switch storeType{
             case .SQLLite:
                 let fileManager = NSFileManager.defaultManager()
@@ -81,27 +121,9 @@ public class MCPersistenceController{
                 assert(store != nil, "Store should be not be nil")
                 assert(error == nil, "Could not create persistent store: \(error)")
             }
-
-
+            
+            
             dispatch_async(dispatch_get_main_queue(), persistenceReady)
-        }
-    }
-    
-    func save(){ // this should possibly have a success and failure block provided
-        
-        // TODO replace with guard statement when 2.0
-        if privateContext.hasChanges || managedContext.hasChanges {
-         
-            managedContext.performBlockAndWait{
-                var error: NSError?
-                assert(self.managedContext.save(&error), "Failed to save on the Main Context with [error: \(error?.localizedDescription), userInfo: \(error?.userInfo)]")
-                
-                // perform on another queue, allowing method to return (privateContext shouldn't block thread)
-                self.privateContext.performBlock{
-                    var privateError: NSError?
-                    assert(self.privateContext.save(&privateError), "Failed to save on the Background Context with [error: \(error?.localizedDescription), userInfo: \(error?.userInfo)]")
-                }
-            }
         }
     }
     

@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C5E07131B6ACEF000E6332A /* ListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07121B6ACEF000E6332A /* ListViewControllerSpec.swift */; };
 		3C5E07151B6AD26300E6332A /* IanQuickSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */; };
 		3C5E07191B6C123800E6332A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07181B6C123800E6332A /* main.swift */; };
+		3C5E07201B6CE92700E6332A /* MCPersistenceControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E071F1B6CE92700E6332A /* MCPersistenceControllerSpec.swift */; };
+		3C5E07251B6CEF5F00E6332A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */; };
+		3C5E07291B6D37A500E6332A /* ListViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */; };
+		3C5E072B1B6D380600E6332A /* MCPersistenceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E072A1B6D380600E6332A /* MCPersistenceFake.swift */; };
 		3C6FDBF81B680637006FD19A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF71B680637006FD19A /* AppDelegate.swift */; };
 		3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */; };
 		3C6FDC041B680637006FD19A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC031B680637006FD19A /* Images.xcassets */; };
@@ -37,9 +40,12 @@
 
 /* Begin PBXFileReference section */
 		30E1782C9F79C0EF30D0EFC8 /* Pods-CoreDataCloudKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataCloudKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataCloudKitTests/Pods-CoreDataCloudKitTests.release.xcconfig"; sourceTree = "<group>"; };
-		3C5E07121B6ACEF000E6332A /* ListViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewControllerSpec.swift; sourceTree = "<group>"; };
 		3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IanQuickSpec.swift; sourceTree = "<group>"; };
 		3C5E07181B6C123800E6332A /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		3C5E071F1B6CE92700E6332A /* MCPersistenceControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCPersistenceControllerSpec.swift; sourceTree = "<group>"; };
+		3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
+		3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModelSpec.swift; sourceTree = "<group>"; };
+		3C5E072A1B6D380600E6332A /* MCPersistenceFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCPersistenceFake.swift; sourceTree = "<group>"; };
 		3C6FDBF21B680637006FD19A /* CoreDataCloudKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataCloudKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6FDBF61B680637006FD19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6FDBF71B680637006FD19A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +87,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C5E07211B6CEC7E00E6332A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3C5E072A1B6D380600E6332A /* MCPersistenceFake.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		3C5E07261B6D374000E6332A /* Sanity */ = {
+			isa = PBXGroup;
+			children = (
+				3C5E071F1B6CE92700E6332A /* MCPersistenceControllerSpec.swift */,
+				3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */,
+				3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */,
+			);
+			name = Sanity;
+			sourceTree = "<group>";
+		};
+		3C5E07271B6D374F00E6332A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3C5E07261B6D374000E6332A /* Sanity */,
+				3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		3C6FDBE91B680637006FD19A = {
 			isa = PBXGroup;
 			children = (
@@ -130,9 +163,9 @@
 		3C6FDC0F1B680637006FD19A /* CoreDataCloudKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				3C5E07271B6D374F00E6332A /* Tests */,
+				3C5E07211B6CEC7E00E6332A /* Helpers */,
 				3C6FDC101B680637006FD19A /* Supporting Files */,
-				3C5E07121B6ACEF000E6332A /* ListViewControllerSpec.swift */,
-				3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */,
 			);
 			path = CoreDataCloudKitTests;
 			sourceTree = "<group>";
@@ -387,8 +420,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C5E07131B6ACEF000E6332A /* ListViewControllerSpec.swift in Sources */,
 				3C5E07151B6AD26300E6332A /* IanQuickSpec.swift in Sources */,
+				3C5E07291B6D37A500E6332A /* ListViewModelSpec.swift in Sources */,
+				3C5E07251B6CEF5F00E6332A /* ModelSpec.swift in Sources */,
+				3C5E07201B6CE92700E6332A /* MCPersistenceControllerSpec.swift in Sources */,
+				3C5E072B1B6D380600E6332A /* MCPersistenceFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

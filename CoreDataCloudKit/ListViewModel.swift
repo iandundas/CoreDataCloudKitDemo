@@ -20,7 +20,7 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
     internal var didChangeSection: SectionDidChangeType
     internal var didChangeObject: ObjectDidChangeType // This is bad-  shouldn't be surfacing Model objects outside of the ViewModel
     
-    private var persistenceController: MCPersistenceController
+    private var persistenceController: PersistenceController
     
     private lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -51,7 +51,7 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
     }()
     
 
-    public init(persistenceController: MCPersistenceController){
+    public init(persistenceController: PersistenceController){
         self.persistenceController = persistenceController
     }
     
