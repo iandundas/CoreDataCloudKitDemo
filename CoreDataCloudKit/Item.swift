@@ -13,5 +13,4 @@ public class Item: NSManagedObject {
 
     @NSManaged public var title: String
     @NSManaged public var created: NSDate
-
 }
