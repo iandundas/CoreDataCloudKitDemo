@@ -10,6 +10,9 @@ class MCPersistenceControllerSpec: QuickSpec {
             describe("with SQL persistence stack") {
                 it("can become ready") {
                     
+                    // FIXME: can use this technique if still getting deadlocks:
+                    // http://stackoverflow.com/questions/29504712/in-xcode-and-swift-how-can-i-get-xctest-to-wait-for-async-calls-in-setup-before
+                    
                     var isReady = false
                     // Can now create the Persistence Controller
                     var persistenceController = MCPersistenceController(persistenceReady: {
