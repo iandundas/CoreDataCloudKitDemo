@@ -1,44 +1,65 @@
-import Quick
-import Nimble
 import CoreDataCloudKit
 import CoreData
+import Quick
+import Nimble
+
 
 class ListViewModelSpec: QuickSpec {
+    
+    func saveAndCatch(moc: NSManagedObjectContext){
+        var error: NSError? = nil;
+        moc.save(&error)
+        expect(error).to(beFalsy())
+    }
+    
     override func spec() {
 
         describe("ViewModel"){
          
             var vm: ListViewModel!
-            var persistence: MCPersistenceFakeController!
+            var p: MCPersistenceFakeController!
             
             beforeEach{
-                persistence = MCPersistenceFakeController()
-                vm = ListViewModel(persistenceController: persistence)
+                p = MCPersistenceFakeController()
+                vm = ListViewModel(persistenceController: p)
             }
             afterEach{
                 vm = nil
-                persistence = nil
+                p = nil
             }
             
-            
-            describe("its CRUD management"){
-                
+            describe("Sanity"){
                 it("has a persistence stack"){
-                    expect(persistence).toNot(beNil())
+                    expect(p).toNot(beNil())
                 }
                 it("starts with empty DB"){
                     var error: NSError?
                     let request = NSFetchRequest(entityName: "Item")
-                    let count = persistence.managedContext.countForFetchRequest(request, error: &error)
+                    let count = p.managedContext.countForFetchRequest(request, error: &error)
                     
                     expect(error).to(beNil())
                     expect(count).to(equal(0))
                 }
+            }
+            describe("its CRUD management"){
+                
                 it("can create an item and fetch it back"){
-                    persistence
+                    let item = vm.addNewItem()
+                    self.saveAndCatch(p.managedContext)
+                    
+                    let fetchedItem = vm.itemForIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+                    expect(item).to(beIdenticalTo(fetchedItem))
                 }
+                
                 it("can delete an item"){
-                    persistence
+                    let item = vm.addNewItem()
+                    self.saveAndCatch(p.managedContext)
+                    
+                    expect(vm.numberOfRows).to(equal(1))
+                    
+                    vm.deleteItemWithIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+                    
+                    expect(vm.numberOfRows).to(equal(0))
                 }
             }
         }

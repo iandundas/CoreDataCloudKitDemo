@@ -56,7 +56,7 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
     }
     
     // MARK Create/Update/Delete:
-    internal func addNewItem() -> Item{
+    public func addNewItem() -> Item{
         let entity = self.fetchedResultsController.fetchRequest.entity!
         
         let item = NSEntityDescription.insertNewObjectForEntityForName(
@@ -72,7 +72,7 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
         return item
     }
     
-    internal func deleteItemWithIndexPath(indexPath: NSIndexPath){
+    public func deleteItemWithIndexPath(indexPath: NSIndexPath){
         let context = self.fetchedResultsController.managedObjectContext
         context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
         
@@ -80,14 +80,14 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
     }
     
     // MARK Accessors:
-    internal var numberOfRows: Int{
+    public var numberOfRows: Int{
         get {
             let sectionInfo = self.fetchedResultsController.sections![0] as! NSFetchedResultsSectionInfo
             return sectionInfo.numberOfObjects
         }
     }
     
-    internal var numberOfSections: Int{
+    public var numberOfSections: Int{
         get {
             return 1
         }
@@ -95,7 +95,7 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
     
     // MARK child view models:
     
-    internal func cellViewModelForIndexPath(let indexPath: NSIndexPath) -> TextFieldCellViewModel{
+    public func cellViewModelForIndexPath(let indexPath: NSIndexPath) -> TextFieldCellViewModel{
         let item = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Item
         
         // set Value:
@@ -117,8 +117,9 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
         return cellViewModel
     }
     
-    //MARK private:
-    private func itemForIndexPath(indexPath: NSIndexPath) -> Item{
+    // THIS SHOULD NOT BE USED OUTSIDE THE VIEWMODEL. Marked public for testing :( 
+    // FIXME - find a better way..
+    public func itemForIndexPath(indexPath: NSIndexPath) -> Item{
         return fetchedResultsController.objectAtIndexPath(indexPath) as! Item
     }
     

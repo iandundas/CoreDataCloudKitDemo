@@ -9,11 +9,11 @@
 import Foundation
 
 
-class TextFieldCellViewModel{
+public class TextFieldCellViewModel{
     
-    typealias ValueDidChange = (String) -> ()
+    public typealias ValueDidChange = (String) -> ()
     
-    internal var value: String?
-    internal var valueDidChange: ValueDidChange?
+    public var value: String?
+    public var valueDidChange: ValueDidChange?
     
 }
