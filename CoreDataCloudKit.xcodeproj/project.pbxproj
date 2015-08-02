@@ -13,6 +13,8 @@
 		3C5E07251B6CEF5F00E6332A /* ModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */; };
 		3C5E07291B6D37A500E6332A /* ListViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */; };
 		3C5E072B1B6D380600E6332A /* MCPersistenceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E072A1B6D380600E6332A /* MCPersistenceFake.swift */; };
+		3C5E07301B6E1D4800E6332A /* ManagedObject+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E072F1B6E1D4800E6332A /* ManagedObject+extensions.swift */; };
+		3C5E07321B6E1D7500E6332A /* ManagedObjectContext+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07311B6E1D7500E6332A /* ManagedObjectContext+extensions.swift */; };
 		3C6FDBF81B680637006FD19A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF71B680637006FD19A /* AppDelegate.swift */; };
 		3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */; };
 		3C6FDC041B680637006FD19A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6FDC031B680637006FD19A /* Images.xcassets */; };
@@ -46,6 +48,8 @@
 		3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelSpec.swift; sourceTree = "<group>"; };
 		3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModelSpec.swift; sourceTree = "<group>"; };
 		3C5E072A1B6D380600E6332A /* MCPersistenceFake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCPersistenceFake.swift; sourceTree = "<group>"; };
+		3C5E072F1B6E1D4800E6332A /* ManagedObject+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObject+extensions.swift"; sourceTree = "<group>"; };
+		3C5E07311B6E1D7500E6332A /* ManagedObjectContext+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ManagedObjectContext+extensions.swift"; sourceTree = "<group>"; };
 		3C6FDBF21B680637006FD19A /* CoreDataCloudKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataCloudKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C6FDBF61B680637006FD19A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6FDBF71B680637006FD19A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,23 +99,31 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		3C5E07261B6D374000E6332A /* Sanity */ = {
+		3C5E07261B6D374000E6332A /* Sanity (remove?) */ = {
 			isa = PBXGroup;
 			children = (
 				3C5E071F1B6CE92700E6332A /* MCPersistenceControllerSpec.swift */,
 				3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */,
-				3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */,
 			);
-			name = Sanity;
+			name = "Sanity (remove?)";
 			sourceTree = "<group>";
 		};
 		3C5E07271B6D374F00E6332A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3C5E07261B6D374000E6332A /* Sanity */,
+				3C5E07261B6D374000E6332A /* Sanity (remove?) */,
+				3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */,
 				3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */,
 			);
 			name = Tests;
+			sourceTree = "<group>";
+		};
+		3C5E072C1B6E1C9200E6332A /* careful.. */ = {
+			isa = PBXGroup;
+			children = (
+				3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */,
+			);
+			name = careful..;
 			sourceTree = "<group>";
 		};
 		3C6FDBE91B680637006FD19A = {
@@ -189,6 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				3C6FDC1F1B6808BB006FD19A /* MCPersistenceController.swift */,
+				3C5E072F1B6E1D4800E6332A /* ManagedObject+extensions.swift */,
+				3C5E07311B6E1D7500E6332A /* ManagedObjectContext+extensions.swift */,
 				3C9D8D901B69133000B39776 /* Model */,
 			);
 			name = Persistence;
@@ -215,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				3C9D8D8E1B69132000B39776 /* Item.swift */,
-				3C6FDBF91B680637006FD19A /* CoreDataCloudKit.xcdatamodeld */,
+				3C5E072C1B6E1C9200E6332A /* careful.. */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -404,10 +418,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C5E07301B6E1D4800E6332A /* ManagedObject+extensions.swift in Sources */,
 				3C6FDBF81B680637006FD19A /* AppDelegate.swift in Sources */,
 				3C9D8D8F1B69132000B39776 /* Item.swift in Sources */,
 				3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */,
 				3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */,
+				3C5E07321B6E1D7500E6332A /* ManagedObjectContext+extensions.swift in Sources */,
 				3CD4A01B1B6A9B1E00287789 /* TextFieldCellViewModel.swift in Sources */,
 				3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */,
 				3CD4A0171B6A874E00287789 /* TextFieldCell.swift in Sources */,
