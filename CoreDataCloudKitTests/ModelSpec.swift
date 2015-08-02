@@ -62,7 +62,6 @@ class ModelSpec: QuickSpec {
                         item1 = moc.insert(Item)
                         item2 = moc.insert(Item)
                         item3 = moc.insert(Item)
-                        
                     })
                     
                     
@@ -73,15 +72,26 @@ class ModelSpec: QuickSpec {
                         expect(item1?.title).to(equal(Item.defaults().Title))
                     }
                     
-                }
-                context("there are no items"){
-                    
-                    it("should calculate the total count correctly"){
-                        expect(Item.countWithMOC(moc)).to(equal(0))
+                    describe("fetching"){
+                        it("should calculate the total count correctly"){
+                            expect(Item.countWithContext(moc)).to(beGreaterThan(0))
+                        }
+                        
+                        it ("should be able to perform a basic fetch"){
+                            let items = Item.objectsInContext(moc)
+                            expect(items).to(contain(item1, item2, item3))
+                        }
+                        
+                        // .. we can go on here with testing each of the extensions.
+                        // for now there's no time - we'll go on to test the ViewModel instead.
                     }
-                    
                 }
                 
+                context("there are no items"){
+                    it("should calculate the total count correctly"){
+                        expect(Item.countWithContext(moc)).to(equal(0))
+                    }
+                }
             }
         }
     }
