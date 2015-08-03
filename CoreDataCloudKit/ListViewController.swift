@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import ReactiveCocoa
 
 class ListViewController: UITableViewController, UIGestureRecognizerDelegate {
 
@@ -31,6 +32,12 @@ class ListViewController: UITableViewController, UIGestureRecognizerDelegate {
         
         self.viewModel.didChangeSection = sectionDidChange
         self.viewModel.didChangeObject = objectDidChange
+        
+        
+        var signal = self.viewModel.signal.observe(next: { update in
+            println("update: \(update)")
+        })
+        
         
         self.tableView.registerNib(UINib(nibName: "TextFieldCell", bundle: nil), forCellReuseIdentifier: "Cell")
     }

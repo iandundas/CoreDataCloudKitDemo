@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+import ReactiveCocoa
 
 public class ListViewModel: NSFetchedResultsControllerDelegate{
     
@@ -49,12 +49,15 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
         
         return frc
     }()
+    internal let sink: Signal<Int, NoError>.Observer
+    internal let signal: Signal<Int, NoError>
     
-
     public init(persistenceController: PersistenceController){
         self.persistenceController = persistenceController
+        
+        (signal, sink) = Signal<Int, NoError>.pipe()
     }
-    
+
     // MARK Create/Update/Delete:
     public func addNewItem() -> Item{
         let entity = self.fetchedResultsController.fetchRequest.entity!
@@ -68,6 +71,8 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
         item.title = "New List Item"
         
         persistenceController.save() // FIXME decide whether to save here or not
+        
+        sendNext(sink, 999)
         
         return item
     }
