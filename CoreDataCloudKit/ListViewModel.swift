@@ -49,8 +49,9 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
         
         return frc
     }()
-    internal let sink: Signal<Int, NoError>.Observer
-    internal let signal: Signal<Int, NoError>
+    
+    public let sink: Signal<Int, NoError>.Observer
+    public let signal: Signal<Int, NoError>
     
     public init(persistenceController: PersistenceController){
         self.persistenceController = persistenceController
