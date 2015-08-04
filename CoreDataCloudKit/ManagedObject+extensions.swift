@@ -25,7 +25,7 @@ extension NSManagedObject{
 extension NSManagedObject{
     public class func countWithContext(context: NSManagedObjectContext, predicate: NSPredicate?=nil)->Int{
         
-        let request = fetchRequest(context, predicate: predicate)
+        let request = fetchRequest(context: context, predicate: predicate)
         let error: NSErrorPointer = nil;
         let count = context.countForFetchRequest(request, error: error)
         if error != nil { // Swift 2.0: replace with guard
@@ -43,7 +43,7 @@ extension NSManagedObject{
         
         let error: NSErrorPointer = nil;
         
-        let request = fetchRequest(context, predicate: predicate, sortedBy: sortedBy, ascending: ascending)
+        let request = fetchRequest(context: context, predicate: predicate, sortedBy: sortedBy, ascending: ascending)
         let fetchResults = context.executeFetchRequest(request, error: error)
         
         if error != nil { // Swift 2.0: replace with guard
@@ -64,7 +64,7 @@ extension NSManagedObject{
     }
     
     // https://gist.github.com/capttaco/adb38e0d37fbaf9c004e
-    public class func fetchRequest(context: NSManagedObjectContext, predicate: NSPredicate? = nil, sortedBy: String? = nil, ascending: Bool = false) -> NSFetchRequest
+    public class func fetchRequest(#context: NSManagedObjectContext, predicate: NSPredicate? = nil, sortedBy: String? = nil, ascending: Bool = false) -> NSFetchRequest
     {
         let request = NSFetchRequest()
         let entity = NSEntityDescription.entityForName(self.entityName, inManagedObjectContext: context)

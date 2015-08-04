@@ -5,7 +5,27 @@ import CoreData
 
 class AdapterSpec: QuickSpec {
     override func spec() {
-
+        
+        // convenience frc generator
+        func quick_frc(predicate: NSPredicate, moc:NSManagedObjectContext) -> NSFetchedResultsController{
+            let fetchRequest = Item.fetchRequest(
+                context: moc,
+                predicate: predicate,
+                sortedBy: "created",
+                ascending: false
+            )
+            
+            let frc = NSFetchedResultsController(
+                fetchRequest: fetchRequest,
+                managedObjectContext: moc,
+                sectionNameKeyPath: nil,
+                cacheName: nil
+            )
+            
+            return frc
+        }
+        
+        
         describe("Adapters"){
             var p: MCPersistenceFakeController!
             
@@ -92,46 +112,27 @@ class AdapterSpec: QuickSpec {
             
             
             describe("FetchedResultsController type"){
-                
                 var items:Array<Item>!
                 var frc: NSFetchedResultsController!
                 
-                describe("CRUD"){
+                beforeEach{
                     
-                    var items: Array<Item>!
+                    frc = quick_frc(NSPredicate(value: true), p.managedContext)
                     
-                    beforeEach{
-                        
-                        let fetchRequest = NSFetchRequest()
-                        fetchRequest.entity = NSEntityDescription.entityForName("Item",
-                            inManagedObjectContext: p.managedContext
-                        )
-                        
-                        fetchRequest.fetchBatchSize = 20
-                        fetchRequest.sortDescriptors = [
-                            NSSortDescriptor(key: "created", ascending: false)
-                        ]
-                        
-                        frc = NSFetchedResultsController(
-                            fetchRequest: fetchRequest,
-                            managedObjectContext: p.managedContext,
-                            sectionNameKeyPath: nil,
-                            cacheName: nil
-                        )
-                        
-                        
-                        // Also insert some sample Items:
-                        let item = p.managedContext.insert(Item)
-                        item.title = "Item one"
-                        let item2 = p.managedContext.insert(Item)
-                        item2.title = "Item two"
-                        let item3 = p.managedContext.insert(Item)
-                        item3.title = "Item three"
-                        
-                        self.saveAndCatch(p.managedContext)
-                        
-                        items = [item, item2, item3]
-                    }
+                    // Also insert some sample Items:
+                    let item = p.managedContext.insert(Item)
+                    item.title = "Item one"
+                    let item2 = p.managedContext.insert(Item)
+                    item2.title = "Item two"
+                    let item3 = p.managedContext.insert(Item)
+                    item3.title = "Item three"
+                    
+                    self.saveAndCatch(p.managedContext)
+                    
+                    items = [item, item2, item3]
+                }
+                
+                describe("Acts like a FRC"){
                     
                     it ("handles existing items properly"){
                         let adapter = FRCAdapter(fetchedResultsController: frc)
@@ -180,6 +181,88 @@ class AdapterSpec: QuickSpec {
                         expect({return willChange == true}).toEventually(beTrue())
                         expect({return didChange == true}).toEventually(beTrue())
                         expect(newValues).toEventually(contain(item4))
+                    }
+                }
+                
+                describe("Replacing the FRC with another"){
+                    
+                    it("should refresh contents when FRC is replaced"){
+                        let adapter = FRCAdapter(fetchedResultsController: frc)
+                        
+                        // check starting conditions
+                        expect(adapter.objects.count).to(equal(3))
+                        
+                        let predicate = NSPredicate(format: "title CONTAINS 'three'", argumentArray: nil)
+                        let new_frc = quick_frc(predicate, p.managedContext)
+                        adapter.fetchedResultsController = new_frc
+                        
+                        /* adapter should only contain one item after FRC switcheroo */
+                        expect(adapter.objects.count).toEventually(equal(1))
+                        
+                        /* adapter should only contain items[2] (containing "three") now: */
+                        expect(adapter.objects).toEventually(contain(items[2]))
+                    }
+                    
+                    it("should fire callbacks when FRC is replaced, if members are different"){
+                        let adapter = FRCAdapter(fetchedResultsController: frc)
+                        
+                        // check starting conditions
+                        expect(adapter.objects.count).to(equal(3))
+                        
+                        var willChange = false
+                        var didChange = false
+                        var newValues = []
+                        
+                        /* We still want the callbacks to be triggered */
+                        adapter.willChangeContent = {
+                            willChange = true
+                        }
+                        adapter.didChangeContent = { newObjects in
+                            didChange = true
+                            newValues = newObjects
+                        }
+                        
+                        // should not have changed yet
+                        expect(willChange).to(beFalse())
+                        expect(didChange).to(beFalse())
+                        
+                        let predicate = NSPredicate(format: "title CONTAINS 'three'", argumentArray: nil)
+                        let new_frc = quick_frc(predicate, p.managedContext)
+                        adapter.fetchedResultsController = new_frc
+                        
+                        expect({return willChange == true}).toEventually(beTrue())
+                        expect({return didChange == true}).toEventually(beTrue())
+                        
+                        /* callback's newValues array should have correct values */
+                        expect(newValues).toEventually(contain(items[2]))
+                    }
+                    
+                    it ("should not fire callback if there's no difference in members"){
+                        let adapter = FRCAdapter(fetchedResultsController: frc)
+                        
+                        // check starting conditions
+                        expect(adapter.objects.count).to(equal(3))
+                        
+                        var willChange = false
+                        var didChange = false
+                        
+                        adapter.willChangeContent = {
+                            willChange = true
+                        }
+                        adapter.didChangeContent = { newObjects in
+                            didChange = true
+                        }
+                        
+                        let predicate = NSPredicate(format: "title CONTAINS 'Item'", argumentArray: nil)
+                        let new_frc = quick_frc(predicate, p.managedContext)
+                        adapter.fetchedResultsController = new_frc
+                        
+                        // Callback should never have been called:
+                        expect({return willChange == false}).toEventually(beTrue())
+                        expect({return didChange == false}).toEventually(beTrue())
+                        
+                        /* callback's newValues array should still have correct values */
+                        expect(new_frc.fetchedObjects).toEventually(contain(items[0], items[1], items[2]))
                     }
                 }
             }

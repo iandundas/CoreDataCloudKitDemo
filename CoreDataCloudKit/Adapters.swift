@@ -11,14 +11,14 @@ import CoreData
 
 //TODO - think of a better name
 protocol AdapterProtocol{
-    typealias T // Type of objects that are vended
+    typealias ItemType // Type of objects that are vended
     
-    var objects: Array<T> {get}
+    var objects: Array<ItemType> {get}
     
     // These are taken from FRC but can apply generally
     // They don't currently indicate WHAT was changed, though.
     var willChangeContent: (() -> ())? {get set}
-    var didChangeContent: ((Array<T>) -> ())? {get set}
+    var didChangeContent: ((Array<ItemType>) -> ())? {get set}
 }
 
 /*  
@@ -79,23 +79,41 @@ public class FRCAdapter : AdapterProtocol, NSFetchedResultsControllerDelegate {
     public var willChangeContent: (() -> ())?
     public var didChangeContent: ((Array<Item>) -> ())?
     
+    // FIXME: quite dodgy here - I don't really want to perform the initial fetch on the FRC before it's even been set 
+    // we're doing it so that we can calculate the difference between old and new FRC fetchedObjects
     public var fetchedResultsController: NSFetchedResultsController{
-        didSet{
+        willSet(newFetchedResultsController){
+            self.dynamicType.performInitialFetch(newFetchedResultsController)
+            
+            let hasChanges = hasChangesBetween(fetchedResultsController, newFetchedResultsController: newFetchedResultsController)
+            if hasChanges{
+                willChangeContent?()
+            }
+        }
+        didSet(oldFetchedResultsController){
             fetchedResultsController.delegate = self
-            performFetch()
+            
+            let hasChanges = hasChangesBetween(oldFetchedResultsController, newFetchedResultsController: fetchedResultsController)
+            if hasChanges{
+                didChangeContent?(fetchedResultsController.fetchedObjects as! [Item])
+            }
         }
     }
     
     public init(fetchedResultsController: NSFetchedResultsController){
+        
         self.fetchedResultsController = fetchedResultsController
-        fetchedResultsController.delegate = self
-        performFetch()
+        self.fetchedResultsController.delegate = self
+        
+        self.dynamicType.performInitialFetch(fetchedResultsController)
     }
+
     
     // TODO: add error handling here
-    private func performFetch(){
+    private class func performInitialFetch(frc: NSFetchedResultsController){
+        
         var error: NSError? = nil
-        fetchedResultsController.performFetch(&error)
+        frc.performFetch(&error)
         assert(error == nil, "ERROR on initial fetch on Fetch Results Controller: \(error)")
     }
     
@@ -121,5 +139,33 @@ public class FRCAdapter : AdapterProtocol, NSFetchedResultsControllerDelegate {
 //    public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 //        didChangeObject?(indexPath: indexPath, type: type, newIndexPath: newIndexPath)
 //    }
+    
+    /* FIXME not a pretty function - rewrite when I know some optionals syntax sugar */
+    private func hasChangesBetween(oldFetchedResultsController:NSFetchedResultsController, newFetchedResultsController:NSFetchedResultsController) -> Bool{
+        
+        let old = oldFetchedResultsController.fetchedObjects as? [Item]
+        let new = newFetchedResultsController.fetchedObjects as? [Item]
+        
+        if let oldObjects = old, newObjects = new{
+            
+            let oldSet = Set(oldObjects)
+            let newSet = Set(newObjects)
+            
+            let union = newSet.union(oldSet)
+            
+            // if same size and union doesn't increase total size, presumably the array is the same
+            return !((union.count == oldSet.count) && (oldSet.count == newSet.count))
+        }
+        else{
+            if (old != nil) && (new == nil){ // new failed, so there's a difference
+                return true
+            }
+            else if (old == nil) && (new != nil){ // old failed, so there's a difference
+                return true
+            }
+        }
+        
+        return false
+    }
     
 }
