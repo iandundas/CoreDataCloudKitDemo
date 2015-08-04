@@ -50,8 +50,10 @@ public class ListViewModel: NSFetchedResultsControllerDelegate{
         return frc
     }()
     
+    // under construction..
     public let sink: Signal<Int, NoError>.Observer
     public let signal: Signal<Int, NoError>
+    // ...
     
     public init(persistenceController: PersistenceController){
         self.persistenceController = persistenceController

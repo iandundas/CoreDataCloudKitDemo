@@ -337,14 +337,13 @@
 			children = (
 				3CCE0DD71B70DD7C009157D5 /* Adapter Pattern */,
 				3CD4A0151B6A86E900287789 /* Cells */,
-				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
 				3C6FDC261B683A1D006FD19A /* Views */,
-				3C6FDC251B6838E9006FD19A /* Frameworks */,
 				3C6FDC241B6838D1006FD19A /* Persistence */,
 				3C6FDC211B683018006FD19A /* Operators */,
-				3C6FDC031B680637006FD19A /* Images.xcassets */,
 				3C6FDBF51B680637006FD19A /* Supporting Files */,
+				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
 				3C5E07181B6C123800E6332A /* main.swift */,
+				3C6FDC251B6838E9006FD19A /* Frameworks */,
 			);
 			path = CoreDataCloudKit;
 			sourceTree = "<group>";
@@ -352,6 +351,7 @@
 		3C6FDBF51B680637006FD19A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3C6FDC031B680637006FD19A /* Images.xcassets */,
 				3C6FDC051B680637006FD19A /* LaunchScreen.xib */,
 				3C6FDC1C1B680641006FD19A /* CoreDataCloudKit.entitlements */,
 				3C6FDBF61B680637006FD19A /* Info.plist */,
