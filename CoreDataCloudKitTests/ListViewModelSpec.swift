@@ -2,7 +2,7 @@ import CoreDataCloudKit
 import CoreData
 import Quick
 import Nimble
-
+import ReactiveCocoa
 
 class ListViewModelSpec: QuickSpec {
  
@@ -54,6 +54,23 @@ class ListViewModelSpec: QuickSpec {
                     vm.deleteItemWithIndexPath(NSIndexPath(forRow: 0, inSection: 0))
                     
                     expect(vm.numberOfRows).to(equal(0))
+                }
+            }
+            
+            describe("ReactiveCocoa tests"){
+                it("can create an item and be notified"){
+                    
+                    var count = 0
+                    var signal = vm.signal.observe(next: { i in
+                        count++
+                    })
+                    
+                    expect(count).to(equal(0))
+                    
+                    let item = vm.addNewItem()
+                    self.saveAndCatch(p.managedContext)
+                    
+                    expect(count).to(equal(1))
                 }
             }
         }
