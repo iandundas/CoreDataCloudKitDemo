@@ -24,6 +24,10 @@
 		3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6FDC281B683A52006FD19A /* ListViewController.swift */; };
 		3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */; };
 		3C9D8D8F1B69132000B39776 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D8D8E1B69132000B39776 /* Item.swift */; };
+		3CCE0DD91B70DDEF009157D5 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCE0DD81B70DDEF009157D5 /* MapViewModel.swift */; };
+		3CCE0DDF1B70DEDF009157D5 /* Adapters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCE0DDE1B70DEDF009157D5 /* Adapters.swift */; };
+		3CCE0DE11B70EDA2009157D5 /* AdapterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCE0DE01B70EDA2009157D5 /* AdapterSpec.swift */; };
+		3CCE0DE31B70EDD2009157D5 /* QuickSpec+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCE0DE21B70EDD2009157D5 /* QuickSpec+extensions.swift */; };
 		3CD4A0171B6A874E00287789 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4A0161B6A874E00287789 /* TextFieldCell.swift */; };
 		3CD4A0191B6A875F00287789 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD4A0181B6A875F00287789 /* TextFieldCell.xib */; };
 		3CD4A01B1B6A9B1E00287789 /* TextFieldCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4A01A1B6A9B1E00287789 /* TextFieldCellViewModel.swift */; };
@@ -64,6 +68,10 @@
 		3C6FDC281B683A52006FD19A /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3C9D8D8C1B68F74300B39776 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListViewModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		3C9D8D8E1B69132000B39776 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		3CCE0DD81B70DDEF009157D5 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		3CCE0DDE1B70DEDF009157D5 /* Adapters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapters.swift; sourceTree = "<group>"; };
+		3CCE0DE01B70EDA2009157D5 /* AdapterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdapterSpec.swift; sourceTree = "<group>"; };
+		3CCE0DE21B70EDD2009157D5 /* QuickSpec+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickSpec+extensions.swift"; sourceTree = "<group>"; };
 		3CD4A0161B6A874E00287789 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		3CD4A0181B6A875F00287789 /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		3CD4A01A1B6A9B1E00287789 /* TextFieldCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCellViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				3C5E072A1B6D380600E6332A /* MCPersistenceFake.swift */,
+				3CCE0DE21B70EDD2009157D5 /* QuickSpec+extensions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -114,6 +123,7 @@
 				3C5E07261B6D374000E6332A /* Sanity (remove?) */,
 				3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */,
 				3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */,
+				3CCE0DE01B70EDA2009157D5 /* AdapterSpec.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -149,6 +159,7 @@
 		3C6FDBF41B680637006FD19A /* CoreDataCloudKit */ = {
 			isa = PBXGroup;
 			children = (
+				3CCE0DD71B70DD7C009157D5 /* Adapter Pattern */,
 				3CD4A0151B6A86E900287789 /* Cells */,
 				3C6FDBF71B680637006FD19A /* AppDelegate.swift */,
 				3C6FDC261B683A1D006FD19A /* Views */,
@@ -232,6 +243,15 @@
 				3C5E072C1B6E1C9200E6332A /* careful.. */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		3CCE0DD71B70DD7C009157D5 /* Adapter Pattern */ = {
+			isa = PBXGroup;
+			children = (
+				3CCE0DD81B70DDEF009157D5 /* MapViewModel.swift */,
+				3CCE0DDE1B70DEDF009157D5 /* Adapters.swift */,
+			);
+			name = "Adapter Pattern";
 			sourceTree = "<group>";
 		};
 		3CD4A0151B6A86E900287789 /* Cells */ = {
@@ -424,11 +444,13 @@
 				3C6FDC201B6808BB006FD19A /* MCPersistenceController.swift in Sources */,
 				3C6FDBFB1B680637006FD19A /* CoreDataCloudKit.xcdatamodeld in Sources */,
 				3C5E07321B6E1D7500E6332A /* ManagedObjectContext+extensions.swift in Sources */,
+				3CCE0DDF1B70DEDF009157D5 /* Adapters.swift in Sources */,
 				3CD4A01B1B6A9B1E00287789 /* TextFieldCellViewModel.swift in Sources */,
 				3C9D8D8D1B68F74300B39776 /* ListViewModel.swift in Sources */,
 				3CD4A0171B6A874E00287789 /* TextFieldCell.swift in Sources */,
 				3C5E07191B6C123800E6332A /* main.swift in Sources */,
 				3C6FDC291B683A52006FD19A /* ListViewController.swift in Sources */,
+				3CCE0DD91B70DDEF009157D5 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +459,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C5E07151B6AD26300E6332A /* IanQuickSpec.swift in Sources */,
+				3CCE0DE31B70EDD2009157D5 /* QuickSpec+extensions.swift in Sources */,
 				3C5E07291B6D37A500E6332A /* ListViewModelSpec.swift in Sources */,
+				3CCE0DE11B70EDA2009157D5 /* AdapterSpec.swift in Sources */,
 				3C5E07251B6CEF5F00E6332A /* ModelSpec.swift in Sources */,
 				3C5E07201B6CE92700E6332A /* MCPersistenceControllerSpec.swift in Sources */,
 				3C5E072B1B6D380600E6332A /* MCPersistenceFake.swift in Sources */,
