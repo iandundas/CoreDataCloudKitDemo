@@ -5,13 +5,7 @@ import Nimble
 
 
 class ListViewModelSpec: QuickSpec {
-    
-    func saveAndCatch(moc: NSManagedObjectContext){
-        var error: NSError? = nil;
-        moc.save(&error)
-        expect(error).to(beFalsy())
-    }
-    
+ 
     override func spec() {
 
         describe("ViewModel"){
