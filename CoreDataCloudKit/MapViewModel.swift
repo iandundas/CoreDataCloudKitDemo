@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import CoreData
+
+class MapViewModel<ItemType, SomeAdapter: AdapterProtocol where ItemType == SomeAdapter.ItemType>{
+    let persistence: MCPersistenceController
+    
+    // The adapter provides us with a datasource of Items (soon to be Places)
+    var adapter: SomeAdapter
+    
+    init(persistence: MCPersistenceController, newAdapter: SomeAdapter){
+        self.persistence = persistence
+        
+        self.adapter = newAdapter
+    }
+}

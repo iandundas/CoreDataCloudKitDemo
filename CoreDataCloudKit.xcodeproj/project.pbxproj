@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C2760321B7139030054B202 /* MapViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2760311B7139030054B202 /* MapViewModelSpec.swift */; };
 		3C5E07151B6AD26300E6332A /* IanQuickSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */; };
 		3C5E07191B6C123800E6332A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E07181B6C123800E6332A /* main.swift */; };
 		3C5E07201B6CE92700E6332A /* MCPersistenceControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5E071F1B6CE92700E6332A /* MCPersistenceControllerSpec.swift */; };
@@ -173,6 +174,7 @@
 
 /* Begin PBXFileReference section */
 		30E1782C9F79C0EF30D0EFC8 /* Pods-CoreDataCloudKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataCloudKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataCloudKitTests/Pods-CoreDataCloudKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C2760311B7139030054B202 /* MapViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModelSpec.swift; sourceTree = "<group>"; };
 		3C5E07141B6AD26300E6332A /* IanQuickSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IanQuickSpec.swift; sourceTree = "<group>"; };
 		3C5E07181B6C123800E6332A /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3C5E071F1B6CE92700E6332A /* MCPersistenceControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCPersistenceControllerSpec.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				3C5E07241B6CEF5F00E6332A /* ModelSpec.swift */,
 				3C5E07281B6D37A500E6332A /* ListViewModelSpec.swift */,
 				3CCE0DE01B70EDA2009157D5 /* AdapterSpec.swift */,
+				3C2760311B7139030054B202 /* MapViewModelSpec.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				3CCE0DE11B70EDA2009157D5 /* AdapterSpec.swift in Sources */,
 				3C5E07251B6CEF5F00E6332A /* ModelSpec.swift in Sources */,
 				3C5E07201B6CE92700E6332A /* MCPersistenceControllerSpec.swift in Sources */,
+				3C2760321B7139030054B202 /* MapViewModelSpec.swift in Sources */,
 				3C5E072B1B6D380600E6332A /* MCPersistenceFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
