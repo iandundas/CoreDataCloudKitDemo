@@ -10,6 +10,7 @@ import Foundation
 import Quick
 import Nimble
 import CoreData
+import CoreDataCloudKit
 
 extension QuickSpec{
 
@@ -18,5 +19,25 @@ extension QuickSpec{
         moc.save(&error)
         expect(error).to(beFalsy())
     }
+    
+    // convenience frc generator
+    func quick_frc(predicate: NSPredicate, moc:NSManagedObjectContext) -> NSFetchedResultsController{
+        let fetchRequest = Item.fetchRequest(
+            context: moc,
+            predicate: predicate,
+            sortedBy: "created",
+            ascending: false
+        )
+        
+        let frc = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: moc,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        
+        return frc
+    }
+    
     
 }

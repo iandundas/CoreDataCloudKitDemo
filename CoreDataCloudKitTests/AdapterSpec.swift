@@ -6,25 +6,7 @@ import CoreData
 class AdapterSpec: QuickSpec {
     override func spec() {
         
-        // convenience frc generator
-        func quick_frc(predicate: NSPredicate, moc:NSManagedObjectContext) -> NSFetchedResultsController{
-            let fetchRequest = Item.fetchRequest(
-                context: moc,
-                predicate: predicate,
-                sortedBy: "created",
-                ascending: false
-            )
-            
-            let frc = NSFetchedResultsController(
-                fetchRequest: fetchRequest,
-                managedObjectContext: moc,
-                sectionNameKeyPath: nil,
-                cacheName: nil
-            )
-            
-            return frc
-        }
-        
+
         
         describe("Adapters"){
             var p: MCPersistenceFakeController!
@@ -117,7 +99,7 @@ class AdapterSpec: QuickSpec {
                 
                 beforeEach{
                     
-                    frc = quick_frc(NSPredicate(value: true), p.managedContext)
+                    frc = self.quick_frc(NSPredicate(value: true), moc: p.managedContext)
                     
                     // Also insert some sample Items:
                     let item = p.managedContext.insert(Item)
@@ -193,7 +175,7 @@ class AdapterSpec: QuickSpec {
                         expect(adapter.objects.count).to(equal(3))
                         
                         let predicate = NSPredicate(format: "title CONTAINS 'three'", argumentArray: nil)
-                        let new_frc = quick_frc(predicate, p.managedContext)
+                        let new_frc = self.quick_frc(predicate, moc: p.managedContext)
                         adapter.fetchedResultsController = new_frc
                         
                         /* adapter should only contain one item after FRC switcheroo */
@@ -227,7 +209,7 @@ class AdapterSpec: QuickSpec {
                         expect(didChange).to(beFalse())
                         
                         let predicate = NSPredicate(format: "title CONTAINS 'three'", argumentArray: nil)
-                        let new_frc = quick_frc(predicate, p.managedContext)
+                        let new_frc = self.quick_frc(predicate, moc: p.managedContext)
                         adapter.fetchedResultsController = new_frc
                         
                         expect({return willChange == true}).toEventually(beTrue())
@@ -254,7 +236,7 @@ class AdapterSpec: QuickSpec {
                         }
                         
                         let predicate = NSPredicate(format: "title CONTAINS 'Item'", argumentArray: nil)
-                        let new_frc = quick_frc(predicate, p.managedContext)
+                        let new_frc = self.quick_frc(predicate, moc: p.managedContext)
                         adapter.fetchedResultsController = new_frc
                         
                         // Callback should never have been called:

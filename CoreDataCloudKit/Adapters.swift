@@ -10,15 +10,16 @@ import Foundation
 import CoreData
 
 //TODO - think of a better name
-protocol AdapterProtocol{
-    typealias ItemType // Type of objects that are vended
+public protocol AdapterProtocol{
+//    typealias ItemType // Type of objects that are vended
     
-    var objects: Array<ItemType> {get}
+    var objects: Array<Item> {get}
     
     // These are taken from FRC but can apply generally
     // They don't currently indicate WHAT was changed, though.
     var willChangeContent: (() -> ())? {get set}
-    var didChangeContent: ((Array<ItemType>) -> ())? {get set}
+//    var didChangeContent: ((Array<ItemType>) -> ())? {get set}
+    var didChangeContent: ((Array<Item>) -> ())? {get set}
 }
 
 /*  
