@@ -50,8 +50,12 @@ code_sign() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Nimble.framework'
   install_framework 'Quick.framework'
+  install_framework 'RxCocoa.framework'
+  install_framework 'RxSwift.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Nimble.framework'
   install_framework 'Quick.framework'
+  install_framework 'RxCocoa.framework'
+  install_framework 'RxSwift.framework'
 fi

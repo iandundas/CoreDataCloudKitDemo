@@ -130,7 +130,7 @@ class MapViewModelSpec: QuickSpec {
                 viewModel.items.producer.start(next: { newArray in
                     itemCount = newArray.count
                 })
-                
+                 
                 viewModel.adapter = frcAdapter
                 
                 expect(viewModel.items.value.count).to(equal(3))
