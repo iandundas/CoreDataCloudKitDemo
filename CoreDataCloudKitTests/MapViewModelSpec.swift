@@ -1,6 +1,7 @@
 import Quick
 import Nimble
 import CoreData
+import RxSwift
 import CoreDataCloudKit
 
 class MapViewModelSpec: QuickSpec {
@@ -49,9 +50,10 @@ class MapViewModelSpec: QuickSpec {
                 it("should have the new items when they're added"){
                     
                     var itemCount = 0
-                    viewModel.items.producer.start(next: { newArray in
-                        itemCount = newArray.count
-                    })
+                    
+                    viewModel.items >- subscribeNext{ newItems in
+                        itemCount = newItems.count
+                    }
                     
                     expect(itemCount).to(equal(0))
                     
@@ -69,9 +71,10 @@ class MapViewModelSpec: QuickSpec {
                 it("should have the new items when adapter is replaced"){
                     
                     var itemCount = 0
-                    viewModel.items.producer.start(next: { newArray in
-                        itemCount = newArray.count
-                    })
+                    
+                    viewModel.items >- subscribeNext{ newItems in
+                        itemCount = newItems.count
+                    }
                     
                     expect(itemCount).to(equal(0))
                     
@@ -127,9 +130,10 @@ class MapViewModelSpec: QuickSpec {
                 
                 // (we also want to get a callback that the items have changed)
                 var itemCount = 0
-                viewModel.items.producer.start(next: { newArray in
-                    itemCount = newArray.count
-                })
+                
+                viewModel.items >- subscribeNext{ newItems in
+                    itemCount = newItems.count
+                }
                  
                 viewModel.adapter = frcAdapter
                 

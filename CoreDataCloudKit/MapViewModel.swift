@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-import ReactiveCocoa
+import RxSwift
 
 //class MapViewModel<SomeAdapter: AdapterProtocol where Item == SomeAdapter.ItemType>{
 public class MapViewModel{
@@ -19,14 +19,13 @@ public class MapViewModel{
         didSet{
             adapter.willChangeContent = willChangeAdapterContent
             adapter.didChangeContent = didChangeAdapterContent
-            items.put(adapter.objects)
+            items.next(adapter.objects)
         }
     }
     
-    // At this point we switch from Adapter land to RAC land
-    public let items = MutableProperty<[Item]>([Item]())
+    // At this point we switch from Adapter land to FuncReact land
+    public let items:Variable<[Item]> = Variable([Item]())
     
-    public let viewableArea = MutableProperty<String>("initial")
     
     // FIXME: use generics properly, instead of hard coding everything to Item. Doesn't matter for now.. 
     // init(persistence: MCPersistenceController, newAdapter: SomeAdapter){
@@ -36,20 +35,13 @@ public class MapViewModel{
         
         adapter.willChangeContent = willChangeAdapterContent
         adapter.didChangeContent = didChangeAdapterContent
-        items.put(adapter.objects)
         
-        viewableArea <~ items.producer |> map {items in items.count > 0 ? items[0].title : "None"}
-        
-        
-        viewableArea.producer.start(next:{ value in
-            println("New Value: \(value)")
-        })
-        
+        items.next(adapter.objects)
     }
     
     func willChangeAdapterContent(){}
     func didChangeAdapterContent(newObjects: [Item]){
-        items.put(newObjects)
+        items.next(adapter.objects)
     }
     
     
